@@ -1,3 +1,7 @@
+<%
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +9,7 @@
   <title>Homepage</title>
 </head>
 <body>
-	<a href="./index.html">Logout</a>
+	<a href="./index.jsp">Logout</a>
 	<p>Please select an option.</p>
 	
 	
