@@ -1,7 +1,7 @@
 <%
 	/*
 	ManageSystemWS webserver = new ManageSystemWS();
-	User userCheck = null;
+	User userCheck = new User();
 
 	String action = (String) request.getParameter("action");
 	String username = (String) request.getParameter("username");
@@ -50,8 +50,10 @@
 	</form>
 	
 	<form id="signup_form" action="./signup.jsp">
-		<p>New to SMSP?</p>
-		<p><input type="submit" id="signup_button" value="Sign up Now!"></p>
+		<fieldset id="signup">
+			<p>New to SMS?</p>
+			<p><input type="submit" id="signup_button" value="Sign up Now!"></p>
+		</fieldset>
 	</form>
 </body>
 </html>

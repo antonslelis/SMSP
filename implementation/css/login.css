@@ -9,7 +9,7 @@ h1 {
 	text-align: center;
 }
 
-#login {
+#login, #signup, #return {
 	margin: 0 auto;
 	width: 15%;
 	border: solid black 2px;
@@ -20,7 +20,7 @@ label {
 	display: block;
 }
 
-submit {
+input[type="submit"] {
 	display: block;
 	margin: 0 auto;
 	border: solid black 1px;
@@ -29,9 +29,4 @@ submit {
 
 a:visited, a:link {
     color: #999999;   
-}
-
-form {
-	margin: 0 auto;
-	text-align:center;
 }
