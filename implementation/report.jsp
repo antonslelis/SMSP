@@ -1,25 +1,16 @@
 <%
-	String school = request.getParameter("school_name");
-	String username = request.getParameter("username");
-	String password = request.getParameter("password");
-	//String account = session.getAttribute("acct_type");
-	
-	session.setAttribute("school_name", school);
-	session.setAttribute("username", username);
-	session.setAttribute("password", password);
-	//session.setAttribute("acct_type", account);
-	
+
 %>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./css/main.css">
   <script src="./scripts/main.js"></script>
-  <title>Homepage</title>
+  <title>Report</title>
 </head>
 <body onLoad="main()">
 	<div id="wrapper">
 		<div id="header">
-			<h1>System Homepage</h1>
+			<h1>Report page</h1>
 			<p id="date"></p>
 			<p id="time"></p>
 		</div> <!-- /header -->
@@ -38,7 +29,7 @@
 				
 			</div> <!-- /nav_bar -->	
 			
-			<p> Welcome back <%= session.getAttribute("username") %></p>
+			
 			
 			
 		</div> <!-- /content -->

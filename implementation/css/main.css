@@ -9,25 +9,43 @@ h1 {
 	text-align: center;
 }
 
-#login {
-	margin: 0 auto;
-	width: 15%;
-	border: solid black 2px;
+#wrapper {
+	width:90%;
+	margin:0 auto;
+}
+
+#header {
 	text-align: center;
 }
 
-#username_label, #password_label, #school_label{
-	display: block;
+#content {
+	
 }
 
-#login_button {
-	display: block;
-	margin: 0 auto;
-	border: solid black 1px;
+
+
+#nav_bar {
 	text-align: center;
+	background-color: #222222;
+	color: #999999;
+	font-size: 20px;
+	height: 25px;
+}
+
+#nav_bar li {
+    list-style-type: none;
+	display: inline;
+	padding-right: 170px;
+}
+
+a {
+    text-decoration: none;
 }
 
 a:visited, a:link {
-    color: blue;
-    
+    color: white;
+}
+
+a:hover {
+	
 }
