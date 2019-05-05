@@ -1,28 +1,5 @@
 <%
-	/*
-	ManageSystemWS webserver = new ManageSystemWS();
-	User userCheck = new User();
-
-	String action = (String) request.getParameter("action");
-	String username = (String) request.getParameter("username");
-	String password = (String) request.getParameter("password");
-
-
-	userCheck.setUsername(username);
-	userCheck.setPassword(password);
-
-	String errorMessage = "";
-
-	if ("validateLogin".equals(action))
-	{
-		try {
-			webserver.logIn(userCheck);
-		}
-		catch (Exception e){
-			errorMessage = "failed to validate " + e.getMessage();
-		}
-	}
-	*/
+	
 
 %>
 

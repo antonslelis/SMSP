@@ -26,9 +26,9 @@
 		
 	</form>
 	<form id="return_form" action="./login.jsp">
-			<fieldset id="return">
-				<p><input type="submit" id="return_button" value="Back to Login"></p>
-			</fieldset>
-		</form>
+		<fieldset id="return">
+			<p><input type="submit" id="return_button" value="Back to Login"></p>
+		</fieldset>
+	</form>
 </body>
 </html>

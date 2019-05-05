@@ -1,5 +1,5 @@
 <%
-
+	if (session.getAttribute("acct_type") == "Parent") {
 %>
 <html>
 <head>
@@ -7,7 +7,7 @@
   <script src="./scripts/main.js"></script>
   <title>Payments</title>
 </head>
-<body onLoad="main()">
+<body onLoad="main()">	
 	<div id="wrapper">
 		<div id="header">
 			<h1>Payments page</h1>
@@ -23,7 +23,7 @@
 					<li><a href="./events.jsp">Events</a></li>
 					<li><a href="./report.jsp">Report</a></li>
 					<li><a href="./payments.jsp">Payments</a></li>
-					<li id="acct_type">Account Type</li>
+					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
 					<li><a href="./login.jsp">Logout</a></li>
 				</ul>
 				
@@ -37,3 +37,10 @@
 	
 </body>
 </html>
+
+<%
+	}
+	else {
+		response.sendRedirect("./accessError.html");
+	}
+%>

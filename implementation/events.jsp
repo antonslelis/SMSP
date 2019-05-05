@@ -23,7 +23,7 @@
 					<li><a href="./events.jsp">Events</a></li>
 					<li><a href="./report.jsp">Report</a></li>
 					<li><a href="./payments.jsp">Payments</a></li>
-					<li id="acct_type">Account Type</li>
+					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
 					<li><a href="./login.jsp">Logout</a></li>
 				</ul>
 				

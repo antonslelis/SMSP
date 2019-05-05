@@ -35,7 +35,7 @@ h1 {
 #nav_bar li {
     list-style-type: none;
 	display: inline;
-	padding-right: 170px;
+	padding-right: 10%;
 }
 
 a {
