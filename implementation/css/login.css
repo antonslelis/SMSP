@@ -1,10 +1,9 @@
 body {
-	font: arial;
+	font-family: arial;
 	font-size: 16px;
 }
 
 h1 {
-	font: arial;
 	font-size: 25px;
 	text-align: center;
 }

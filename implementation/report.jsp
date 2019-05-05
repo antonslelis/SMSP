@@ -24,7 +24,7 @@
 					<li><a href="./report.jsp">Report</a></li>
 					<li><a href="./payments.jsp">Payments</a></li>
 					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
-					<li><a href="./login.jsp">Logout</a></li>
+					<li><a href="./login.jsp?action=logout">Logout</a></li>
 				</ul>
 				
 			</div> <!-- /nav_bar -->	

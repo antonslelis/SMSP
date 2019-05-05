@@ -1,9 +1,9 @@
 body {
-	font: arial;
+	font-family: arial;
 	font-size: 16px;
 }
 
-h1 {
+h1, h2 {
 	font: arial;
 	font-size: 25px;
 	text-align: center;
@@ -14,15 +14,25 @@ h1 {
 	margin:0 auto;
 }
 
-#header {
+#header{
 	text-align: center;
 }
 
-#content {
-	
+#content_activities {
+	font: arial;
+	text-align: center;
 }
 
+#createActivity_form, #invoice_form{
+	margin: 0 auto;
+	width: 15%;
+	border: solid black 2px;
+	text-align: center;
+}
 
+label {
+	display: block;
+}
 
 #nav_bar {
 	text-align: center;
@@ -42,10 +52,10 @@ a {
     text-decoration: none;
 }
 
-a:visited, a:link {
+#nav_bar a:visited, a:link {
     color: white;
 }
 
-a:hover {
-	
+#content_activities a, a:visited, a:link{
+	color:grey;
 }

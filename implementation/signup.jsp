@@ -9,13 +9,12 @@
   <title>Signup</title>
 </head>
 <body>
-	<h1>Please enter your login details.</h1>
+	<h1>Please enter your sign up details.</h1>
 
 	<form id="signup_form" action="./login.jsp" method="post">
 		<fieldset id="signup">
 			<label id="school_label">School Name:</label>
 			<select name="school_name">
-				<option value="test1">TEST 1</option>
 				<%
 					for (int i=0; i<school_list.length; i++)
 					{

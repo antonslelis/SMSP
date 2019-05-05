@@ -26,7 +26,7 @@
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
 	
-	String account = (String) session.getAttribute("acct_type");
+	String account = (String) request.getParameter("access_level");
 	
 	if (school != null && username != null && password != null) {
 		session.setAttribute("school_name", school);
@@ -62,7 +62,7 @@
 					<li><a href="./report.jsp">Report</a></li>
 					<li><a href="./payments.jsp">Payments</a></li>
 					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
-					<li><a href="./login.jsp">Logout</a></li>
+					<li><a href="./login.jsp?action=logout">Logout</a></li>
 				</ul>
 				
 			</div> <!-- /nav_bar -->	
