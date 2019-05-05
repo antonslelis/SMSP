@@ -1,17 +1,4 @@
 <%
-	String school = request.getParameter("school_name");
-	String username = request.getParameter("username");
-	String password = request.getParameter("password");
-	//String account = session.getAttribute("acct_type");
-	
-	if (school != null && username != null && password != null) {
-		session.setAttribute("school_name", school);
-		session.setAttribute("username", username);
-		session.setAttribute("password", password);
-		
-		//test variable for login checks on other jsps for now
-		session.setAttribute("acct_type", "Parent");
-	}
 	/*
 	ManageSystemWS webserver = new ManageSystemWS();
 	User userCheck = new User();
@@ -34,6 +21,22 @@
 		}
 	}
 	*/
+	
+	String school = request.getParameter("school_name");
+	String username = request.getParameter("username");
+	String password = request.getParameter("password");
+	
+	String account = (String) session.getAttribute("acct_type");
+	
+	if (school != null && username != null && password != null) {
+		session.setAttribute("school_name", school);
+		session.setAttribute("username", username);
+		session.setAttribute("password", password);
+		
+		//test variable for login checks on other jsps for now
+		session.setAttribute("acct_type", account);
+	}
+	
 	
 %>
 <html>

@@ -1,5 +1,6 @@
 <%
-	if (session.getAttribute("acct_type") == "Parent") {
+	
+	if (session.getAttribute("acct_type").equals("Parent")) {
 %>
 <html>
 <head>
