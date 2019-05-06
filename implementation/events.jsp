@@ -8,7 +8,7 @@
 	String action = (String) request.getParameter("action");
 	if ("createActivity".equals(action))
 	{
-		String uploadedFile = (String) request.getParameter("image");
+		Image uploadedFile = (Image) request.getParameter("image");
 		String event_name = (String) request.getParameter("name");
 		String comment = (String) request.getParameter("comment");
 		

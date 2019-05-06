@@ -1,0 +1,61 @@
+body {
+	font-family: arial;
+	font-size: 16px;
+}
+
+h1, h2 {
+	font: arial;
+	font-size: 25px;
+	text-align: center;
+}
+
+#wrapper {
+	width:90%;
+	margin:0 auto;
+}
+
+#header{
+	text-align: center;
+}
+
+#content_activities {
+	font: arial;
+	text-align: center;
+}
+
+#createActivity_form, #invoice_form{
+	margin: 0 auto;
+	width: 15%;
+	border: solid black 2px;
+	text-align: center;
+}
+
+label {
+	display: block;
+}
+
+#nav_bar {
+	text-align: center;
+	background-color: #222222;
+	color: #999999;
+	font-size: 20px;
+	height: 25px;
+}
+
+#nav_bar li {
+    list-style-type: none;
+	display: inline;
+	padding-right: 15%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#nav_bar a:visited, a:link {
+    color: white;
+}
+
+#content_activities a, a:visited, a:link{
+	color:grey;
+}
