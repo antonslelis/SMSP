@@ -482,4 +482,210 @@ public class ManageSystemWS {
         }
         return creator;
     }
+    private User updateUser (User updUser) throws MalformedURLException, IOException{
+       String username=updUser.getUsername();
+       String password=updUser.getPassword(); 
+       String firstName=updUser.getFirst_Name(); 
+       String lastName=updUser.getLast_Name();
+       URL url = new URL("https://smspdata.firebaseio.com/users/"+username+"/.json");
+       HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+       conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+       conn.setRequestMethod("PUT");
+       String updString="{"
+                    + "\"password\": \""+password+"\","
+                    + " \"data\": {"
+                    + "\"first_name\": \""+firstName+"\","
+                    + "\"last_name\": \""+lastName+"\","
+                    + "}"
+                    + "}";;
+        conn.setDoOutput(true);
+        OutputStream out=conn.getOutputStream();
+        out.write(updString.getBytes());
+        return updUser;
+    }
+    private Activity createActivity(Activity newActivity) throws MalformedURLException, IOException, ParseException{
+        //program connects to database to get last activity ID
+        URL url = new URL("https://smspdata.firebaseio.com/activity_last/last_id/.json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        int last_id=-1;
+        if (conn.getResponseCode() == 200) {
+            InputStream is=conn.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line = br.readLine();
+            last_id=Integer.parseInt(line);
+        }
+        conn.disconnect();
+        //After getting last ID we set all new variables and prepare to add new activity to database
+        int new_id=last_id+1;
+        String author=newActivity.getAuthor();
+        String task=newActivity.getTask();
+        boolean free=newActivity.getFree();
+        double price=0;
+        if(!free){
+            price=newActivity.getInvoice().getPrice();
+        }
+        String postMessage="{\"author\":\""+author+"\",\"task\":\""+task+"\",\"paid\":\""+free+"\",\"price\":\""+price+"\"}";
+        //connecting to database to add new activity
+        URL uploadUrl=new URL("https://smspdata.firebaseio.com/activity/"+new_id+"/.json");
+        conn=(HttpsURLConnection) uploadUrl.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("PUT");
+        OutputStream out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        conn.disconnect();
+        //create variables to insert into user_act table
+        JSONArray userActivities=getUserActivities(author);
+        String comment=" ";
+        boolean paid=true;
+        if(!free){
+            paid=false;
+        }
+        JSONObject newUserAct=new JSONObject();
+        newUserAct.put("ID", new_id);
+        newUserAct.put("comment", comment);
+        newUserAct.put("paid", paid);
+        userActivities.add(newUserAct);
+        //insert data into user_act table
+        uploadUrl=new URL("https://smspdata.firebaseio.com/user_act/"+author+"/.json");
+        conn=(HttpsURLConnection) uploadUrl.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("PUT");
+        out=conn.getOutputStream();
+        out.write(userActivities.toString().getBytes());
+        conn.disconnect();
+        //creates user_activities for all child classes
+        //get data from database of what user manages
+        url = new URL("https://smspdata.firebaseio.com/users/"+author+"/manages/.json");
+        conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
+            if(line!=null){
+                JSONArray childArray=getChildrenArray(all);
+                Iterator i=childArray.iterator();
+                while (i.hasNext()){
+                    JSONObject loopObject=(JSONObject) i.next();
+                    String username=(String)loopObject.get("pupil");
+                    JSONArray pupilActivities=getUserActivities(username);
+                    pupilActivities.add(newUserAct);
+                    uploadUrl=new URL("https://smspdata.firebaseio.com/user_act/"+username+"/.json");
+                    conn=(HttpsURLConnection) uploadUrl.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setRequestMethod("PUT");
+                    out=conn.getOutputStream();
+                    out.write(pupilActivities.toString().getBytes());
+                    conn.disconnect();
+                }
+            }
+        }
+        conn.disconnect();
+        return newActivity;
+        
+    }
+    private Activity updateActivity(Activity updActivity, String username) throws IOException, MalformedURLException, ParseException{
+        int actId=updActivity.getActId();
+        JSONArray userActivities=getUserActivities(username);
+        Iterator i=userActivities.iterator();
+        JSONArray newActivities=new JSONArray();
+        while (i.hasNext()){
+            JSONObject loopObject=(JSONObject) i.next();
+            int loopId=(Integer)loopObject.get("ID");
+            if(actId==loopId){
+                JSONObject updActivity=new JSONObject();
+                updActivity.put("ID",actId);
+                updActivity.put("comment", updActivity.getComment());
+                updActivity.put("paid", updActivity.getInvoice().getPaid());
+                newActivities.add(updActivity);
+            }else{
+                newActivities.add(loopObject);
+            }
+        }
+        URL uploadUrl=new URL("https://smspdata.firebaseio.com/user_act/"+username+"/.json");
+        HttpsURLConnection conn=(HttpsURLConnection) uploadUrl.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("PUT");
+        OutputStream out=conn.getOutputStream();
+        out.write(newActivities.toString().getBytes());
+        conn.disconnect();
+        return updActivity;
+    }
+    private JSONArray getChildrenArray(String managment) throws IOException, ParseException{
+        char first=managment.charAt(0);
+        JSONArray childArray=new JSONArray();
+        if(first=='_'){
+            URL url=new URL("https://smspdata.firebaseio.com/managment/"+managment+"/classes.json");
+            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+            InputStream is=conn.getInputStream();
+            if (conn.getResponseCode() == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String all = "",line;
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser=new JSONParser();
+                Object obj=parser.parse(all);
+                JSONArray classesArray=(JSONArray) obj;
+                Iterator i=classesArray.iterator();
+                while (i.hasNext()){
+                    JSONObject loopObject=(JSONObject) i.next();
+                    String classManage=(String)loopObject.get("class");
+                    JSONArray subArray= getChildrenArray(classManage);
+                    Iterator i2=subArray.iterator();
+                    while (i2.hasNext()){
+                        JSONObject loopObject2=(JSONObject) i.next();
+                        childArray.add(loopObject2);
+                    }
+                }
+            }
+        }else if ((first=='+')||(first=='-')){//if first letter is + or - we connect to database, grab list of pupils
+            //and parse it to childArray
+            URL url=new URL("https://smspdata.firebaseio.com/managment/"+managment+"/pupils.json");
+            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+            InputStream is=conn.getInputStream();
+            if (conn.getResponseCode() == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String all = "",line;
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser=new JSONParser();
+                Object obj=parser.parse(all);
+                JSONArray classesArray=(JSONArray) obj;
+                Iterator i=classesArray.iterator();
+                while (i.hasNext()){
+                    JSONObject loopObject=(JSONObject) i.next();
+                    childArray.add(loopObject);
+                      
+                }
+            }
+        }
+        return childArray;
+        
+    }
+    private JSONArray getUserActivities(String username) throws MalformedURLException, IOException, ParseException{
+        //get JsonArray of activities from a user
+        URL url = new URL("https://smspdata.firebaseio.com/user_act/"+username+"/.json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
+            JSONParser parser=new JSONParser();
+            Object obj=parser.parse(all);
+            JSONArray jsonArray=(JSONArray) obj;
+            return jsonArray;
+            
+        }
+        return null;
+        
+    }
 }
