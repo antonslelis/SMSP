@@ -5,15 +5,13 @@ public class Activity {
 
     private int actId;
 
-    private int authorId;
+    private String author; 
 
     private String task;
 
     private Image uploadedImage;
 
     private String pupilComment;
-
-    private int pupilId;
 
     private boolean free;
 
@@ -28,12 +26,12 @@ public class Activity {
         this.actId = actId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTask() {
@@ -58,14 +56,6 @@ public class Activity {
 
     public void setPupilComment(String pupilComment) {
         this.pupilComment = pupilComment;
-    }
-
-    public int getPupilId() {
-        return pupilId;
-    }
-
-    public void setPupilId(int pupilId) {
-        this.pupilId = pupilId;
     }
 
     public boolean isFree() {

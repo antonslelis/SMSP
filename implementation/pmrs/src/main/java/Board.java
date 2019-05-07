@@ -5,42 +5,44 @@ public class Board extends Teacher {
     private ParentList parentList;
 
     public Activity createActivity(Activity newAct) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        teacherList.addActivityToPupils(newAct);
+        
+        return newAct;
     }
 
-    public Activity modifyActivity(Activity updActivity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Activity modifyActivity(int id, String newComment, boolean isPaid) {
+        teacherList.updatePupilsActivity(id, newComment, isPaid);
+        
+        return null; 
     }
 
     public Teacher createTeacher(Teacher newTeacher) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        teacherList.insertTeacher(newTeacher); 
+        
+        return newTeacher; 
     }
 
     public Teacher updateTeacher(Teacher updTeacher) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        teacherList.updateTeacher(updTeacher);
+        
+        return updTeacher;
     }
 
     public Parent createParent(Parent newParent) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        parentList.insertParent(newParent); 
+        
+        return newParent; 
     }
 
     public Parent updateParent(Parent updParent) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        parentList.updateParent(updParent);
+        
+        return updParent; 
     }
 
-    public int deletePupil(int pupilId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int deleteParent(int parentId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int deleteTeacher(int teacherId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
-        public TeacherList getTeacherList() {
+    public TeacherList getTeacherList() {
         return teacherList;
     }
 

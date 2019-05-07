@@ -39,4 +39,25 @@ public class TeacherList {
         return newTeacher; 
      
     }
+    
+    public void addActivityToPupils(Activity newActivity){
+        
+        int size = teacherList.size(); 
+        int i = 0; 
+        
+        while (i < size){
+            teacherList.get(i).addActivityToPupils(newActivity);
+            i++;
+        }
+    }
+    
+    public void updatePupilsActivity(int id, String newComment, boolean isPaid){
+        int size = teacherList.size(); 
+        int i = 0; 
+        
+        while (i < size){
+            teacherList.get(i).modifyActivities(id, newComment, isPaid);
+            i++;
+        }
+    }
 }

@@ -26,8 +26,9 @@ public class ManageSystemWS {
         return activity; 
     }
 
-    public Activity updateActivity(Activity updActivity) {
-        Activity newActivity = activityList.updateActity(updActivity); 
+    public Activity updateActivity(int id, String newComment, boolean isPaid) {
+        
+        Activity newActivity = activityList.updateActivity(id, newComment, isPaid); 
         
         return newActivity; 
         

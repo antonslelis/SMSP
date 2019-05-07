@@ -17,10 +17,10 @@ public class Pupil extends User {
         return personalActivities.getActivitybyId(newAct.getActId()); 
     }
 
-    public Activity modifyActivity(Activity updAct) {
-        personalActivities.updateActity(updAct); 
+    public Activity modifyActivity(int id, String newComment, boolean isPaid) {
+        Activity updAct = personalActivities.updateActivity(id, newComment, isPaid); 
         
-        return personalActivities.getActivitybyId(updAct.getActId()); 
+        return updAct; 
     }
 
 

@@ -27,7 +27,7 @@ public class ParentList {
     }
 
     
-    public Parent updatePupil(Parent newParent){
+    public Parent updateParent(Parent newParent){
 
         for (int i = 0; i < parentList.size();  i++) {
             Parent pa = parentList.get(i);

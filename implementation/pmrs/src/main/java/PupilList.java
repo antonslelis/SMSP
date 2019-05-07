@@ -45,4 +45,47 @@ public class PupilList {
      
     }
     
+    public Pupil getPupilByUsername(String username){
+        
+        int length = pupilList.size(); 
+        int i = 0; 
+        Pupil pp = new Pupil(); 
+        
+        while (i < length){
+            pp = pupilList.get(i); 
+             
+            
+            if (pp.getUsername().equalsIgnoreCase(username)){
+                break; 
+            }
+
+            i++;
+        }
+        
+        return pp;
+        
+    }
+    
+    public void addActivityToPupils(Activity newActivity){
+        
+        int size = pupilList.size(); 
+        int i = 0; 
+        
+        while (i < size){
+            pupilList.get(i).createActivity(newActivity); 
+            i++;
+        }
+    }
+    
+        public void updatePupilsActivity(int id, String newComment, boolean isPaid){
+        
+        int size = pupilList.size(); 
+        int i = 0; 
+        
+        while (i < size){
+            pupilList.get(i).modifyActivity(id, newComment, isPaid); 
+            i++;
+        }
+
+    }
 }

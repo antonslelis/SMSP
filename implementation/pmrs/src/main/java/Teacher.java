@@ -3,7 +3,7 @@ public class Teacher extends Pupil {
     private PupilList pupilList;
 
     public Activity createActivity(Activity newActivity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+           return null;    
     }
 
     public PupilList getPupilList() {
@@ -14,8 +14,10 @@ public class Teacher extends Pupil {
         this.pupilList = pupilList;
     }
 
-    public Activity modifyActivity(Activity upActivity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void modifyActivities(int id, String newComment, boolean isPaid) {
+        
+      pupilList.updatePupilsActivity(id, newComment, isPaid);
+     
     }
 
     public Pupil createPupil(Pupil newPupil) {
@@ -24,10 +26,17 @@ public class Teacher extends Pupil {
     }
 
     public Pupil modifyPupil(Pupil updPupil) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        pupilList.updatePupil(updPupil); 
+        
+        //checks if pupil was added to list
+        return pupilList.getPupilByUsername(updPupil.getUsername()); 
     }
 
     public Pupil linkToParent(Pupil updPupil) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void addActivityToPupils(Activity newActivity){
+        pupilList.addActivityToPupils(newActivity);
     }
 }
