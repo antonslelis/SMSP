@@ -1,4 +1,5 @@
-<%
+<%@ page import="org.solent.group.project.model.ManageSystemWS" %>
+<%@ page import="org.solent.group.project.model.User" %><%
 
 	ManageSystemWS webserver = new ManageSystemWS();
 	User userCheck = new User();
@@ -29,11 +30,11 @@
 	if ("validateLogin".equals(action))
 	{
 		try {
-			Account validated = webserver.logIn(userCheck);
+			User validated = webserver.logIn(userCheck);
 			if (validated == null)
 			{
 				allowed = false;
-				sendRedirect("./accessError.html");
+				response.sendRedirect("./accessError.html");
 			}
 			else {
 				allowed = true;

@@ -23,11 +23,7 @@
 	{
 		session.invalidate();
 	}
-	
 
-	
-	//temp school list for tests
-	String[] school_list = {"school 1", "school 2", "school 3"};
 
 	
 
@@ -43,32 +39,11 @@
 
 	<form id="login_form" action="./home.jsp" method="post">
 		<fieldset id="login">
-			<label id="school_label">School Name:</label>
-			<select name="school_name">
-				<%
-					for (int i=0; i<school_list.length; i++)
-					{
-						
-				%>
-						<option value="<%= school_list[i] %>"><%= school_list[i] %></option>
-				<%
-					}
-				%>
-			</select>
-		
 			<label id="username_label">Username:</label>
 			<input type="text" name="username"><br/>
 
 			<label id="password_label">Password:</label>
 			<input type="password" name="password"></input><br/>
-			
-			<label id="access_label">Access Level:</label>
-			<select name="access_level">
-				<option value="Admin">Admin</option>
-				<option value="Board">Board</option>
-				<option value="Teacher">Teacher</option>
-				<option value="Parent">Parent</option>
-			</select>
 			
 			<input type="hidden" name="action" value="validateLogin"></input>
 			<p><input type="submit" id="login_button" value="Login"></p>
