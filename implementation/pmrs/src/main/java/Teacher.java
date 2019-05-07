@@ -19,7 +19,8 @@ public class Teacher extends Pupil {
     }
 
     public Pupil createPupil(Pupil newPupil) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        pupilList.insertPupil(newPupil); 
+        return newPupil; 
     }
 
     public Pupil modifyPupil(Pupil updPupil) {

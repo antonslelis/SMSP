@@ -16,7 +16,32 @@ public class BoardList {
         
         return boardList.size(); 
         
-    }    
+    }
+
+    public boolean insertBoard (Board board){
+        boardList.add(board); 
+        
+        return true;       
+    }
+
+    
+    public Board updateBoard(Board newBoard){
+
+        for (int i = 0; i < boardList.size();  i++) {
+            Board b = boardList.get(i);
+            
+            //checks for equal usernames, ignores uppercase letters
+            if(b.getUsername().equalsIgnoreCase(newBoard.getUsername())){
+                boardList.remove(i); 
+                boardList.add(newBoard); 
+            }
+                
+            
+        }
+     
+        return newBoard; 
+     
+    }
     
    
 }

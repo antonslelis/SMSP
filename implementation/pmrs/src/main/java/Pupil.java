@@ -11,16 +11,18 @@ public class Pupil extends User {
     private int parentId;
 
     public Activity createActivity(Activity newAct) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        personalActivities.insertActivity(newAct); 
+        
+        return personalActivities.getActivitybyId(newAct.getActId()); 
     }
 
     public Activity modifyActivity(Activity updAct) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        personalActivities.updateActity(updAct); 
+        
+        return personalActivities.getActivitybyId(updAct.getActId()); 
     }
 
-    public int deleteActivity(int actId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public ActivityList getPersonalActivities() {
         return personalActivities;

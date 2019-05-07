@@ -33,4 +33,8 @@ public class Parent extends User {
     public void setPupilList(PupilList pupilList) {
         this.pupilList = pupilList;
     }
+    
+    public void addPupil(Pupil pupil){
+        pupilList.insertPupil(pupil); 
+    }
 }

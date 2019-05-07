@@ -18,6 +18,7 @@ public class Activity {
     private boolean free;
 
     private Invoice payment;
+   
 
     public int getActId() {
         return actId;
@@ -82,8 +83,5 @@ public class Activity {
     public void setPayment(Invoice payment) {
         this.payment = payment;
     }
-    
-    //activity should have a function to create an invoice 
-    
     
 }
