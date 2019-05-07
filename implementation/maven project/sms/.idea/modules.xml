@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/sms.iml" filepath="$PROJECT_DIR$/sms.iml" />
       <module fileurl="file://$PROJECT_DIR$/model/sms-model.iml" filepath="$PROJECT_DIR$/model/sms-model.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rest-client/sms-rest-client.iml" filepath="$PROJECT_DIR$/rest-client/sms-rest-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/sms-web.iml" filepath="$PROJECT_DIR$/web/sms-web.iml" />
     </modules>
   </component>

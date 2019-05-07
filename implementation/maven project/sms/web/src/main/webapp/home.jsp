@@ -1,27 +1,9 @@
 <%
-	/*
+
 	ManageSystemWS webserver = new ManageSystemWS();
 	User userCheck = new User();
 
 	String action = (String) request.getParameter("action");
-
-
-	userCheck.setUsername(username);
-	userCheck.setPassword(password);
-
-	String errorMessage = "";
-
-	if ("validateLogin".equals(action))
-	{
-		try {
-			webserver.logIn(userCheck);
-		}
-		catch (Exception e){
-			errorMessage = "failed to validate " + e.getMessage();
-		}
-	}
-	*/
-	
 	String school = request.getParameter("school_name");
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
@@ -35,6 +17,36 @@
 		
 		//test variable for login checks on other jsps for now
 		session.setAttribute("acct_type", account);
+	}
+
+	userCheck.setUsername(username);
+	userCheck.setPassword(password);
+
+	String errorMessage = "";
+	Boolean allowed = false;
+	
+	
+	if ("validateLogin".equals(action))
+	{
+		try {
+			Account validated = webserver.logIn(userCheck);
+			if (validated == null)
+			{
+				allowed = false;
+				sendRedirect("./accessError.html");
+			}
+			else {
+				allowed = true;
+			}
+		}
+		catch (Exception e){
+			errorMessage = "failed to validate " + e.getMessage();
+		}
+	}
+	else if ("createUser".equals(action))
+	{
+		
+		
 	}
 	
 	
@@ -59,6 +71,12 @@
 				<ul>
 					<li><a href="./events.jsp">Events</a></li>
 					<li><a href="./report.jsp">Report</a></li>
+					<% if(account.equals("Admin") || account.equals("Board") || account.equals("Teacher")) {
+					%>
+					<li><a href="./createUser.jsp">Create User</a></li>
+					<%
+					}
+					%>
 					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
 					<li><a href="./login.jsp?action=logout">Logout</a></li>
 				</ul>

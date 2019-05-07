@@ -24,22 +24,6 @@
 		session.invalidate();
 	}
 	
-	/*
-	newUser.setUsername(username);
-	newUser.setPassword(password);
-
-	String errorMessage = "";
-
-	if ("signUpUser".equals(action))
-	{
-		try {
-			webserver.createUser(newUser);
-		}
-		catch (Exception e){
-			errorMessage = "failed to create " + e.getMessage();
-		}
-	}
-	*/
 
 	
 	//temp school list for tests
@@ -90,12 +74,6 @@
 			<p><input type="submit" id="login_button" value="Login"></p>
 		</fieldset>
 	</form>
-	
-	<form id="signup_form" action="./signup.jsp">
-		<fieldset id="signup">
-			<p>New to SMS?</p>
-			<p><input type="submit" id="signup_button" value="Sign up Now!"></p>
-		</fieldset>
-	</form>
+
 </body>
 </html>

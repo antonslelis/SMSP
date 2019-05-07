@@ -1,0 +1,14 @@
+org\solent\group\project\model\Board.class
+org\solent\group\project\model\Parent.class
+org\solent\group\project\model\Invoice.class
+org\solent\group\project\model\Pupil.class
+org\solent\group\project\model\Activity.class
+org\solent\group\project\model\User.class
+org\solent\group\project\model\Admin.class
+org\solent\group\project\model\ManageSystemWS.class
+org\solent\group\project\model\Teacher.class
+org\solent\group\project\model\BoardList.class
+org\solent\group\project\model\ActivityList.class
+org\solent\group\project\model\PupilList.class
+org\solent\group\project\model\TeacherList.class
+org\solent\group\project\model\ParentList.class

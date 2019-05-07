@@ -46,21 +46,30 @@ public class ActivityList {
         return true; 
     }
     
-    public Activity updateActity(Activity activity){
+    //string comment boolean paid
+    public Activity updateActivity(int id, String newComment, boolean isPaid){
 
         for (int i = 0; i < activityList.size();  i++) {
             Activity ac = activityList.get(i);
             
-            if(ac.getActId() == activity.getActId()){
-                activityList.remove(i); 
-                activityList.add(activity); 
+            if(ac.getActId() == id){
+                activityList.get(i).setPupilComment(newComment);
+                activityList.get(i).setFree(isPaid);
+                
+                
+                return ac;
             }
                 
             
         }
-     
-        return activity; 
-     
+      
+        return null; 
     }
+    
+    public int getListSize(){
+        
+        return activityList.size(); 
+        
+    }   
     
 }

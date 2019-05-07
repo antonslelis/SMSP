@@ -67,22 +67,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
 		session.invalidate();
 	}
 	
-	/*
-	newUser.setUsername(username);
-	newUser.setPassword(password);
-
-	String errorMessage = "";
-
-	if ("signUpUser".equals(action))
-	{
-		try {
-			webserver.createUser(newUser);
-		}
-		catch (Exception e){
-			errorMessage = "failed to create " + e.getMessage();
-		}
-	}
-	*/
 
 	
 	//temp school list for tests
@@ -143,13 +127,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<p><input type=\"submit\" id=\"login_button\" value=\"Login\"></p>\r\n");
       out.write("\t\t</fieldset>\r\n");
       out.write("\t</form>\r\n");
-      out.write("\t\r\n");
-      out.write("\t<form id=\"signup_form\" action=\"./signup.jsp\">\r\n");
-      out.write("\t\t<fieldset id=\"signup\">\r\n");
-      out.write("\t\t\t<p>New to SMS?</p>\r\n");
-      out.write("\t\t\t<p><input type=\"submit\" id=\"signup_button\" value=\"Sign up Now!\"></p>\r\n");
-      out.write("\t\t</fieldset>\r\n");
-      out.write("\t</form>\r\n");
+      out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

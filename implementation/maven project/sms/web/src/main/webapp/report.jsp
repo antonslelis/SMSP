@@ -21,6 +21,12 @@
 				<ul>
 					<li><a href="./events.jsp">Events</a></li>
 					<li><a href="./report.jsp">Report</a></li>
+					<% if(account.equals("Admin") || account.equals("Board") || account.equals("Teacher")) {
+					%>
+					<li><a href="./createUser.jsp">Create User</a></li>
+					<%
+					}
+					%>
 					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
 					<li><a href="./login.jsp?action=logout">Logout</a></li>
 				</ul>
