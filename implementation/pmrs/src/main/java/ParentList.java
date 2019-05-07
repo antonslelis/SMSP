@@ -13,5 +13,9 @@ public class ParentList {
         this.parentList = parentList;
     }
     
-    
+    public int getListSize(){
+        
+        return parentList.size(); 
+        
+    }   
 }

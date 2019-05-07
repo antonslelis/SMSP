@@ -63,4 +63,10 @@ public class ActivityList {
      
     }
     
+    public int getListSize(){
+        
+        return activityList.size(); 
+        
+    }   
+    
 }

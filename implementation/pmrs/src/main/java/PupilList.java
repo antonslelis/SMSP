@@ -13,4 +13,11 @@ public class PupilList {
         this.pupilList = pupilList;
     }
     
+    public int getListSize(){
+        
+        return pupilList.size(); 
+        
+    }    
+    
+    
 }

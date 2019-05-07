@@ -9,5 +9,11 @@ public class TeacherList {
         return teacherList;
     }
     
+    public int getListSize(){
+        
+        return teacherList.size(); 
+        
+    }    
+    
     
 }
