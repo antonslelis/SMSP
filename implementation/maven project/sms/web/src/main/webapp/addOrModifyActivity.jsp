@@ -46,9 +46,6 @@
 			<label id="comment_label">Comment:</label>
 			<textarea name="comment"></textarea><br/>
 			
-			<label id="image_label">Upload Image:</label>
-			<input type="file" name="image" accept="image/*"></input>
-			
 			<input type="hidden" name="action" value="createActivity"></input>
 			<p><input type="submit" id="createActivity_btn" value="Create activity"></p>
 		
