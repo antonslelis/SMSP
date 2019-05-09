@@ -1,9 +1,9 @@
 package org.solent.group.project.model;
 public class Board extends Teacher {
 
-    private TeacherList teacherList;
-
-    private ParentList parentList;
+    private TeacherList teacherList=new TeacherList();
+    private ParentList parentList=new ParentList();
+    
 
     public Activity createActivity(Activity newAct) {
         

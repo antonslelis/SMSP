@@ -370,19 +370,14 @@ public class ManageSystemWS {
         } 
         return user;
     }
-
-    public User createUser(User newUser, User creator, User parent) throws MalformedURLException, ProtocolException, IOException{
-        
-        if(newUser.getClass().getSimpleName().equals("Board")){
-            
-            Board newUser1=(Board)newUser;
-            String firstName=newUser1.getFirst_name();
-            String lastName=newUser1.getLast_name();
-            String password=newUser1.getPassword();
-            String username=newUser1.getUsername();
-            String type="BOARD";
-            String manages="_"+username;
-            String postMessage="{"
+    public Admin createBoard(Board newUser, Admin creator) throws MalformedURLException, ProtocolException, IOException{
+        String firstName=newUser.getFirst_name();
+        String lastName=newUser.getLast_name();
+        String password=newUser.getPassword();
+        String username=newUser.getUsername();
+        String type="BOARD";
+        String manages="_"+username;
+        String postMessage="{"
                     + "\"password\": \""+password+"\","
                     + " \"data\": {"
                     + "\"first_name\": \""+firstName+"\","
@@ -391,44 +386,45 @@ public class ManageSystemWS {
                     + "\"manages\": \""+manages+"\""
                     + "}"
                     + "}";
-            URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            OutputStream out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            //get size of Board list from creator
-            int size=2;
-            url = new URL("https://smspdata.firebaseio.com/managment/~all/schools/"+size+"/.json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"school\":\""+manages+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"board\":\""+username+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            //Add new user to BoardList
-            //
-            //creator.createBoard(newUser1);
-        
-        } else if(newUser.getClass().getSimpleName().equals("Teacher")){
-            Teacher newUser1=(Teacher)newUser;
-            String firstName=newUser1.getFirst_name();
-            String lastName=newUser1.getLast_name();
-            String password=newUser1.getPassword();
-            String username=newUser1.getUsername();
-            String type="TEACHER";
-            String manages="-"+username;
-            String postMessage="{"
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        OutputStream out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        //get size of Board list from creator
+        int size=creator.getBoardList().getListSize();
+        url = new URL("https://smspdata.firebaseio.com/managment/~all/schools/"+size+"/.json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"school\":\""+manages+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"board\":\""+username+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        conn.disconnect();
+        creator.createBoard(newUser);
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        return creator;
+    }
+    public Board createTeacher(Teacher newUser,Board creator) throws MalformedURLException, ProtocolException, IOException{
+        String firstName=newUser.getFirst_name();
+        String lastName=newUser.getLast_name();
+        String password=newUser.getPassword();
+        String username=newUser.getUsername();
+        String type="TEACHER";
+        String manages="-"+username;
+        String postMessage="{"
                     + "\"password\": \""+password+"\","
                     + " \"data\": {"
                     + "\"first_name\": \""+firstName+"\","
@@ -437,43 +433,45 @@ public class ManageSystemWS {
                     + "\"manages\": \""+manages+"\""
                     + "}"
                     + "}";
-            URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            OutputStream out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            //get size of Teacher list from creator
-            int size=0;
-            url = new URL("https://smspdata.firebaseio.com/managment/_"+creator.getUsername()+"/classes/"+size+".json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"class\":\""+manages+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"teacher\":\""+username+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            conn.disconnect();
-            //Add new user to TeacherList
-            //
-
-        } else if(newUser.getClass().getSimpleName().equals("Parent")){
-            Parent newUser1=(Parent)newUser;
-            String firstName=newUser1.getFirst_name();
-            String lastName=newUser1.getLast_name();
-            String password=newUser1.getPassword();
-            String username=newUser1.getUsername();
-            String type="PARENT";
-            String manages="+"+username;
-            String postMessage="{"
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        OutputStream out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        //get size of Teacher list from creator
+        int size=creator.getTeacherList().getListSize();
+        url = new URL("https://smspdata.firebaseio.com/managment/_"+creator.getUsername()+"/classes/"+size+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"class\":\""+manages+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"teacher\":\""+username+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        creator.createTeacher(newUser);
+        return creator;
+    }
+    public Board createParent(Parent newUser,Board creator) throws MalformedURLException, IOException{
+        String firstName=newUser.getFirst_name();
+        String lastName=newUser.getLast_name();
+        String password=newUser.getPassword();
+        String username=newUser.getUsername();
+        String type="PARENT";
+        String manages="+"+username;
+        String postMessage="{"
                     + "\"password\": \""+password+"\","
                     + " \"data\": {"
                     + "\"first_name\": \""+firstName+"\","
@@ -482,65 +480,76 @@ public class ManageSystemWS {
                     + "\"manages\": \""+manages+"\""
                     + "}"
                     + "}";
-            URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            OutputStream out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            System.out.println("OutputStream response code:"+conn.getResponseCode());
-            conn.disconnect();
-            //get size of Parent list from creator
-            int size=0;
-            url = new URL("https://smspdata.firebaseio.com/managment/_"+creator.getUsername()+"/parents/"+size+".json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"class\":\""+manages+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            System.out.println("OutputStream response code:"+conn.getResponseCode());
-            conn.disconnect();
-            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
-            conn=(HttpsURLConnection) url.openConnection();
-            postMessage="{\"parent\":\""+username+"\"}";
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            System.out.println("OutputStream response code:"+conn.getResponseCode());
-            conn.disconnect();
-            //Add new user to TeacherList
-            //
-
-        } else if(newUser.getClass().getSimpleName().equals("Pupil")){
-            Pupil newUser1=(Pupil)newUser;
-            String firstName=newUser1.getFirst_name();
-            String lastName=newUser1.getLast_name();
-            String password=newUser1.getPassword();
-            String username=newUser1.getUsername();
-            
-            String type="PUPIL";
-           
-            String postMessage="{"
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        OutputStream out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        //get size of Parent list from creator
+        int size=creator.getParentList().getListSize();
+        url = new URL("https://smspdata.firebaseio.com/managment/_"+creator.getUsername()+"/parents/"+size+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"parent\":\""+manages+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        url = new URL("https://smspdata.firebaseio.com/managment/"+manages+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"parent\":\""+username+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        creator.createParent(newUser);
+        return creator;
+    }
+    
+    public Teacher createPupil(Pupil newUser, Teacher creator, Parent parent) throws MalformedURLException, IOException{
+        String firstName=newUser.getFirst_name();
+        String lastName=newUser.getLast_name();
+        String password=newUser.getPassword();
+        String username=newUser.getUsername();
+        String type="PUPIL";
+        String postMessage="{"
                     + "\"password\": \""+password+"\","
                     + " \"data\": {"
                     + "\"first_name\": \""+firstName+"\","
                     + "\"last_name\": \""+lastName+"\","
-                    + "\"type\": \""+type+"\","
+                    + "\"type\": \""+type+"\""
                     + "}"
                     + "}";
-            URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            OutputStream out=conn.getOutputStream();
-            out.write(postMessage.getBytes());
-            System.out.println("OutputStream response code:"+conn.getResponseCode());
-            conn.disconnect();
-            //get size of Pupil list from creator
-            int size=1;
-            url = new URL("https://smspdata.firebaseio.com/managment/-"+creator.getUsername()+"/pupils/"+size+".json");
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+username+".json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        OutputStream out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        //get size of Pupil list from creator
+        int size=creator.getPupilList().getListSize();
+        url = new URL("https://smspdata.firebaseio.com/managment/-"+creator.getUsername()+"/pupils/"+size+".json");
+        conn=(HttpsURLConnection) url.openConnection();
+        postMessage="{\"pupil\":\""+username+"\"}";
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        out=conn.getOutputStream();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        creator.createPupil(newUser);
+        if(parent!=null){
+            //get size of Pupil list from parent
+            int parentsize=parent.getPupilList().getListSize();
+            url = new URL("https://smspdata.firebaseio.com/managment/+"+parent.getUsername()+"/pupils/"+size+".json");
             conn=(HttpsURLConnection) url.openConnection();
             postMessage="{\"pupil\":\""+username+"\"}";
             conn.setRequestMethod("PUT");
@@ -549,25 +558,11 @@ public class ManageSystemWS {
             out.write(postMessage.getBytes());
             System.out.println("OutputStream response code:"+conn.getResponseCode());
             conn.disconnect();
-            //Add new user to PupilList
-            //
-            //
-            if(parent!=null){
-                //get size of Pupil list from parent
-                int parentsize=1;
-                url = new URL("https://smspdata.firebaseio.com/managment/+"+parent.getUsername()+"/pupils/"+size+".json");
-                conn=(HttpsURLConnection) url.openConnection();
-                postMessage="{\"pupil\":\""+username+"\"}";
-                conn.setRequestMethod("PUT");
-                conn.setDoOutput(true);
-                out=conn.getOutputStream();
-                out.write(postMessage.getBytes());
-                System.out.println("OutputStream response code:"+conn.getResponseCode());
-                conn.disconnect();
-            }
         }
         return creator;
     }
+  
+
     public User updateUser (User updUser) throws MalformedURLException, IOException{
        Admin updUser1=(Admin) updUser; 
        String username=updUser1.getUsername();
@@ -599,11 +594,16 @@ public class ManageSystemWS {
             InputStream is=conn.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line = br.readLine();
-            last_id=Integer.parseInt(line);
+            if(line.equals("null")){
+                last_id=-1;
+            }else{
+                last_id=Integer.parseInt(line);
+            }
         }
         conn.disconnect();
         //After getting last ID we set all new variables and prepare to add new activity to database
-        int new_id=last_id+1;
+        Integer new_id=last_id+1;
+        newActivity.setActId(new_id);
         String author=newActivity.getAuthor();
         String task=newActivity.getTask();
         boolean free=newActivity.isFree();
@@ -611,7 +611,7 @@ public class ManageSystemWS {
         if(!free){
             price=newActivity.getPayment().getPrice();
         }
-        String postMessage="{\"author\":\""+author+"\",\"task\":\""+task+"\",\"paid\":\""+free+"\",\"price\":\""+price+"\"}";
+        String postMessage="{\"author\":\""+author+"\",\"task\":\""+task+"\",\"free\":\""+free+"\",\"price\":\""+price+"\"}";
         //connecting to database to add new activity
         URL uploadUrl=new URL("https://smspdata.firebaseio.com/activity/"+new_id+"/.json");
         conn=(HttpsURLConnection) uploadUrl.openConnection();
@@ -619,6 +619,17 @@ public class ManageSystemWS {
         conn.setRequestMethod("PUT");
         OutputStream out=conn.getOutputStream();
         out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
+        conn.disconnect();
+        //increment last id for activity list
+        uploadUrl=new URL("https://smspdata.firebaseio.com/activity_last/last_id/.json");
+        conn=(HttpsURLConnection) uploadUrl.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("PUT");
+        out=conn.getOutputStream();
+        postMessage=new_id.toString();
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
         conn.disconnect();
         //create variables to insert into user_act table
         JSONArray userActivities=getUserActivities(author);
@@ -630,6 +641,8 @@ public class ManageSystemWS {
         JSONObject newUserAct=new JSONObject();
         newUserAct.put("ID", new_id);
         newUserAct.put("comment", comment);
+        newActivity.setPupilComment(comment);
+        newActivity.getPayment().setPaid(paid);
         newUserAct.put("paid", paid);
         userActivities.add(newUserAct);
         //insert data into user_act table
@@ -639,10 +652,11 @@ public class ManageSystemWS {
         conn.setRequestMethod("PUT");
         out=conn.getOutputStream();
         out.write(userActivities.toString().getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
         conn.disconnect();
         //creates user_activities for all child classes
         //get data from database of what user manages
-        url = new URL("https://smspdata.firebaseio.com/users/"+author+"/manages/.json");
+        url = new URL("https://smspdata.firebaseio.com/users/"+author+"/data/manages/.json");
         conn=(HttpsURLConnection) url.openConnection();
         InputStream is=conn.getInputStream();
         if (conn.getResponseCode() == 200) {
@@ -652,7 +666,7 @@ public class ManageSystemWS {
                 all += line;
             }
             conn.disconnect();
-            if(line!=null){
+            if(!all.equals("null")){       
                 JSONArray childArray=getChildrenArray(all);
                 Iterator i=childArray.iterator();
                 while (i.hasNext()){
@@ -666,6 +680,7 @@ public class ManageSystemWS {
                     conn.setRequestMethod("PUT");
                     out=conn.getOutputStream();
                     out.write(pupilActivities.toString().getBytes());
+                    System.out.println("OutputStream response code:"+conn.getResponseCode());
                     conn.disconnect();
                 }
             }
@@ -681,12 +696,14 @@ public class ManageSystemWS {
         JSONArray newActivities=new JSONArray();
         while (i.hasNext()){
             JSONObject loopObject=(JSONObject) i.next();
-            int loopId=(Integer)loopObject.get("ID");
+            long forId=(long)loopObject.get("ID");
+            int loopId=(int) forId;
             if(actId==loopId){
                 JSONObject jsonActivity=new JSONObject();
-                jsonActivity.put("ID",actId);
-                jsonActivity.put("comment", updActivity.getPupilComment());
                 jsonActivity.put("paid", updActivity.getPayment().isPaid());
+                jsonActivity.put("comment", updActivity.getPupilComment());
+                jsonActivity.put("ID",actId);
+                System.out.println(jsonActivity);
                 newActivities.add(updActivity);
             }else{
                 newActivities.add(loopObject);
@@ -697,12 +714,19 @@ public class ManageSystemWS {
         conn.setDoOutput(true);
         conn.setRequestMethod("PUT");
         OutputStream out=conn.getOutputStream();
-        out.write(newActivities.toString().getBytes());
+        String postMessage=newActivities.toString();
+        System.out.println(postMessage);
+        out.write(postMessage.getBytes());
+        System.out.println("OutputStream response code:"+conn.getResponseCode());
         conn.disconnect();
         return updActivity;
     }
     private JSONArray getChildrenArray(String managment) throws IOException, ParseException{
         char first=managment.charAt(0);
+        if(first=='\"'){
+            managment=managment.substring(1,managment.length()-1);
+            first=managment.charAt(0);
+        }
         JSONArray childArray=new JSONArray();
         if(first=='_'){
             URL url=new URL("https://smspdata.firebaseio.com/managment/"+managment+"/classes.json");
@@ -724,7 +748,7 @@ public class ManageSystemWS {
                     JSONArray subArray= getChildrenArray(classManage);
                     Iterator i2=subArray.iterator();
                     while (i2.hasNext()){
-                        JSONObject loopObject2=(JSONObject) i.next();
+                        JSONObject loopObject2=(JSONObject) i2.next();
                         childArray.add(loopObject2);
                     }
                 }
@@ -766,9 +790,14 @@ public class ManageSystemWS {
                 all += line;
             }
             conn.disconnect();
-            JSONParser parser=new JSONParser();
-            Object obj=parser.parse(all);
-            JSONArray jsonArray=(JSONArray) obj;
+            JSONArray jsonArray=null;
+            if (all.equals("null")){
+                jsonArray=new JSONArray();
+            }else{
+                JSONParser parser=new JSONParser();
+                Object obj=parser.parse(all);
+                jsonArray=(JSONArray) obj;
+            }
             return jsonArray;
             
         }

@@ -1,8 +1,14 @@
 package org.solent.group.project.model;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardList {
     private List<Board> boardList;
+    int listsize=0;
+
+    public BoardList() {
+        this.boardList = new ArrayList<Board>();
+    }
 
     public List<Board> getBoardList() {
         return boardList;
@@ -13,14 +19,13 @@ public class BoardList {
     }
     
     public int getListSize(){
-        
-        return boardList.size(); 
+           return listsize;
         
     }
 
     public boolean insertBoard (Board board){
         boardList.add(board); 
-        
+        listsize++;
         return true;       
     }
 

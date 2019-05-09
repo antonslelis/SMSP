@@ -1,7 +1,7 @@
 package org.solent.group.project.model;
 public class Pupil extends User {
 
-    private ActivityList personalActivities;
+    private ActivityList personalActivities=new ActivityList();
 
     private String first_name;
 

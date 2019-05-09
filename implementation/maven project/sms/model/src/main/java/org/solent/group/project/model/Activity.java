@@ -15,7 +15,7 @@ public class Activity {
 
     private boolean free;
 
-    private Invoice payment;
+    private Invoice payment=new Invoice();
    
 
     public int getActId() {

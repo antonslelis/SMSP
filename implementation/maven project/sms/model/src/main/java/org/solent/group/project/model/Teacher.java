@@ -1,7 +1,7 @@
 package org.solent.group.project.model;
 public class Teacher extends Pupil {
 
-    private PupilList pupilList;
+    private PupilList pupilList= new PupilList();
 
     public Activity createActivity(Activity newActivity) {
            return null;    

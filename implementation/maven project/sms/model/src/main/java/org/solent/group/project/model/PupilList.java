@@ -1,9 +1,11 @@
 package org.solent.group.project.model;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PupilList {
 
-    private List<Pupil> pupilList;
+    private List<Pupil> pupilList=new ArrayList();
+    private int listSize=0;
 
     public List<Pupil> getPupilList() {
         return pupilList;
@@ -15,14 +17,14 @@ public class PupilList {
     
     public int getListSize(){
         
-        return pupilList.size(); 
+        return listSize; 
         
     }    
    
     
     public boolean insertPupil (Pupil pupil){
         pupilList.add(pupil); 
-        
+        listSize++;
         return true;       
     }
 

@@ -1,9 +1,11 @@
 package org.solent.group.project.model;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParentList {
 
-    private List<Parent> parentList;
+    private List<Parent> parentList=new ArrayList();
+    int parentSize=0;
 
     public List<Parent> getParentList() {
         return parentList;
@@ -15,14 +17,14 @@ public class ParentList {
     
     public int getListSize(){
         
-        return parentList.size(); 
+        return parentSize; 
         
     }   
     
     
     public boolean insertParent (Parent parent){
         parentList.add(parent); 
-        
+        parentSize++;
         return true;       
     }
 
