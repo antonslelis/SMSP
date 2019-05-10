@@ -3,8 +3,44 @@
   <component name="ChangeListManager">
     <list default="true" id="377c178b-ffd4-4fa3-b80a-378a8ede3eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Activity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ActivityList.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ActivityList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/BoardList.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/BoardList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ManageSystemWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ManageSystemWS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Parent.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Parent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ParentList.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ParentList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Pupil.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Pupil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/PupilList.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/PupilList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/TeacherList.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/TeacherList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/sms-model-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/sms-model-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/events.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/classes/addOrModifyActivity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/addOrModifyActivity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/classes/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/createUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/addOrModifyActivity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/addOrModifyActivity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/createUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/lib/sms-model-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/lib/sms-model-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/addOrModifyActivity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/addOrModifyActivity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/createUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/login.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/rest-client/target/" />
@@ -21,17 +57,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+            <state relative-caret-position="5813">
+              <caret line="435" column="46" lean-forward="true" selection-start-line="435" selection-start-column="46" selection-end-line="435" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/main/webapp/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="-187">
+              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -39,8 +78,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/main/webapp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
+            <state relative-caret-position="386">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/createUser.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/events.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -56,8 +113,10 @@
         <option value="$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java" />
         <option value="$PROJECT_DIR$/model/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/home.jsp" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/login.jsp" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/events.jsp" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/home.jsp" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" />
       </list>
     </option>
   </component>
@@ -74,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,11 +206,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557431875054" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -186,11 +246,13 @@
       <workItem from="1557160192164" duration="748000" />
       <workItem from="1557239365891" duration="1113000" />
       <workItem from="1557240717981" duration="209000" />
+      <workItem from="1557431324136" duration="766000" />
+      <workItem from="1557500066292" duration="8017000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2070000" />
+    <option name="totallyTimeSpent" value="10853000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -247,24 +309,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/BoardList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -310,20 +358,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ParentList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Parent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
@@ -338,24 +372,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Admin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        <state relative-caret-position="5813">
+          <caret line="435" column="46" lean-forward="true" selection-start-line="435" selection-start-column="46" selection-end-line="435" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
+        <state relative-caret-position="386">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/events.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Parent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ParentList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="-187">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/createUser.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

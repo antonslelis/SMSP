@@ -6,7 +6,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./css/main.css">
-  <title>Invoice</title>
+  <title>Create user</title>
 </head>
 <body>
 	<form id="createUser_form" action="./home.jsp" method="post">
