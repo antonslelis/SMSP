@@ -47,21 +47,33 @@ public class ManageSystemWS {
             //compares passwords and calls getUser function if passwords match
             //otherwise returns null
             String comparePass=all.substring(1,all.length()-1);
+            conn.disconnect();
             if(comparePass.equals(newUser.getPassword())){
                 userFromData.setPassword(newUser.getPassword());
                 userFromData.setUsername(username);
-                userFromData=getUser(userFromData);
+                url = new URL("https://smspdata.firebaseio.com/users/"+username+"/data/type.json");
+                conn=(HttpsURLConnection) url.openConnection();
+                is=conn.getInputStream();
+                if (conn.getResponseCode() == 200) {
+                    br = new BufferedReader(new InputStreamReader(is));
+                    line = br.readLine();
+                    String userType=line.substring(1,line.length()-1);
+                    userFromData.setType(userType);
+                }
+                conn.disconnect();
                 return userFromData;
             }
         }
         return null;
     }
-
-    
-    private User getUser(User user) throws IOException, ParseException {
-        //this function gets all the data about the user from the database
-        //first we get all information about the user himself from the database
-        URL url = new URL("https://smspdata.firebaseio.com/users/"+user.getUsername()+"/data/.json?print=pretty");
+    public Pupil logPupil(User newUser) throws IOException, ParseException{
+        Pupil newPupil=new Pupil();
+        newPupil.setUsername(newUser.getUsername());
+        if(newUser.getPassword()!=null){
+            newPupil.setPassword(newUser.getPassword());
+        }
+        newPupil.setType(newUser.getType());
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+newPupil.getUsername()+"/data.json");
         HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
         InputStream is=conn.getInputStream();
         if (conn.getResponseCode() == 200) {
@@ -73,237 +85,21 @@ public class ManageSystemWS {
             JSONParser parser=new JSONParser();
             Object obj=parser.parse(all);
             JSONObject jsonUser=(JSONObject) obj;
-            //program checks what type of user we are dealing with
-            //and depending on the result a proper script will be run
-            String accountType=(String)jsonUser.get("type");
-            User result=null;
-            String newurl=new String("https://smspdata.firebaseio.com/managment/");
-            if(accountType.equals("ADMIN")){
-                Admin result1=new Admin();
-                result1.setFirst_name((String)jsonUser.get("first_name"));
-                result1.setLast_name((String)jsonUser.get("last_name"));
-                result1.setUsername(user.getUsername());
-                result1.setPassword(user.getPassword());
-                //we cast Admin class to User to access getActivities and getChild function
-                result=(User)result1;
-                result=getActivities(result);
-                String managment=(String)jsonUser.get("manages");
-                result=getChild(managment,result,newurl);
-            }else if(accountType.equals("BOARD")){
-                Board result1=new Board();
-                result1.setFirst_name((String)jsonUser.get("first_name"));
-                result1.setLast_name((String)jsonUser.get("last_name"));
-                result1.setUsername(user.getUsername());
-                result1.setPassword(user.getPassword());
-                //we cast Board class to User to access getActivities and getChild function
-                result=(User)result1;
-                result=getActivities(result);
-                String managment=(String)jsonUser.get("manages");
-                result=getChild(managment,result,newurl);
-            }else if(accountType.equals("TEACHER")){
-                Teacher result1=new Teacher();
-                result1.setFirst_name((String)jsonUser.get("first_name"));
-                result1.setLast_name((String)jsonUser.get("last_name"));
-                result1.setUsername(user.getUsername());
-                result1.setPassword(user.getPassword());
-                //we cast Teacher class to User to access getActivities and getChild function
-                result=(User)result1;
-                result=getActivities(result);
-                String managment=(String)jsonUser.get("manages");
-                result=getChild(managment,result,newurl);
-            }else if(accountType.equals("PARENT")){
-                Parent result1=new Parent();
-                result1.setFirst_name((String)jsonUser.get("first_name"));
-                result1.setLast_name((String)jsonUser.get("last_name"));
-                result1.setUsername(user.getUsername());
-                result1.setPassword(user.getPassword());
-                //we cast Parent class to User to access getActivities and getChild function
-                result=(User)result1;
-                result=getActivities(result);
-                String managment=(String)jsonUser.get("manages");
-                result=getChild(managment,result,newurl);
-            }else if(accountType.equals("PUPIL")){
-                Pupil result1=new Pupil();
-                result1.setFirst_name((String)jsonUser.get("first_name"));
-                result1.setLast_name((String)jsonUser.get("last_name"));
-                result1.setUsername(user.getUsername());
-                result1.setPassword(user.getPassword());
-                //we cast Pupil class to User to access getActivities function
-                result=(User)result1;
-                result=getActivities(result);
-            }
-            //After 
-            return result;
+            newPupil.setFirst_name((String)jsonUser.get("first_name"));
+            newPupil.setLast_name((String)jsonUser.get("last_name"));
+            newPupil.setPersonalActivities(getActivities(newPupil.getUsername())); 
         }
-        return null;
+        conn.disconnect();
+        return newPupil;
     }
-//START SYMBOLS    
-//~ means everything
-//_ means school
-//- means class  
-//+ means parent's children      
-    private User getChild(String managment, User parent, String urlString) throws MalformedURLException, IOException, ParseException {
-        char first=managment.charAt(0);
-        User result=null;
-        if(first=='~'){
-            URL url=new URL(urlString+managment+"/.json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            InputStream is=conn.getInputStream();
-            if (conn.getResponseCode() == 200) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String all = "", line;
-                while ((line = br.readLine()) != null) {
-                    all += line;
-                }
-                JSONParser parser=new JSONParser();
-                Object obj=parser.parse(all);
-                JSONObject jsonManagment=(JSONObject) obj;
-                JSONArray manageArray=(JSONArray) jsonManagment.get("schools");
-                Iterator i=manageArray.iterator();
-                while (i.hasNext()){
-                    JSONObject loopObject=(JSONObject) i.next();
-                    String schoolName=(String) loopObject.get("school");
-                    parent=getChild(schoolName,parent,urlString);
-                }
-                result=parent;
-                return result;
-            }
-        } else if(first=='_'){
-            URL url=new URL(urlString+managment+"/.json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            InputStream is=conn.getInputStream();
-            if (conn.getResponseCode() == 200) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String all = "", line;
-                while ((line = br.readLine()) != null) {
-                    all += line;
-                }
-                JSONParser parser=new JSONParser();
-                Object obj=parser.parse(all);
-                JSONObject jsonManagment=(JSONObject) obj;
-                String boardName=(String) jsonManagment.get("board");
-                User board=new User();
-                board.setUsername(boardName);
-                JSONArray manageArray=(JSONArray) jsonManagment.get("classes");
-                Iterator i=manageArray.iterator();
-                                    
-                    //ADD board TO THE BOARD LIST IN parent IF PARENT IS ADMIN AND RETURN parent
-                    //OR RETURN board
-                   
-                if(parent.getClass().getSimpleName().equals("Admin")){
-                    Admin parent1=(Admin)parent;
-                    board=getUser(board);
-                    Board board1=(Board)board;
-                    parent1.createBoard(board1);//add board to admin's BoardList
-                    return parent1;
-
-                }else{
-                    while (i.hasNext()){
-                        JSONObject loopObject=(JSONObject) i.next();
-                        String className=(String) loopObject.get("class");
-                        parent=getChild(className,parent,urlString);
-                        
-                    }
-                    return parent;
-                }
-            }
-            
-        } else if(first=='-'){
-            URL url=new URL(urlString+managment+"/.json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            InputStream is=conn.getInputStream();
-            if (conn.getResponseCode() == 200) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String all = "", line;
-                while ((line = br.readLine()) != null) {
-                    all += line;
-                }
-                JSONParser parser=new JSONParser();
-                Object obj=parser.parse(all);
-                JSONObject jsonManagment=(JSONObject) obj;
-                String teacherName=(String) jsonManagment.get("teacher");
-                User teacher=new User();
-                teacher.setUsername(teacherName);
-                JSONArray manageArray=(JSONArray) jsonManagment.get("pupils");
-                Iterator i=manageArray.iterator();
-                if(parent.getClass().getSimpleName().equals("Board")){
-                    teacher=getUser(teacher);
-                    Board parent1=(Board)parent;
-                    Teacher teacher1=(Teacher)teacher;
-                    parent1.createTeacher(teacher1);
-                    return parent1;
-
-                }else{
-                    while (i.hasNext()){
-                        JSONObject loopObject=(JSONObject) i.next();
-                        String pupilName=(String) loopObject.get("pupil");
-                        parent=getChild(pupilName,parent,urlString);
-                        
-                    }
-                    return parent;
-                }
-            }
-        } else if(first=='+'){
-            URL url=new URL(urlString+managment+"/.json");
-            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
-            InputStream is=conn.getInputStream();
-            if (conn.getResponseCode() == 200) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String all = "", line;
-                while ((line = br.readLine()) != null) {
-                    all += line;
-                }
-                JSONParser parser=new JSONParser();
-                Object obj=parser.parse(all);
-                JSONObject jsonManagment=(JSONObject) obj;
-                String parentName=(String) jsonManagment.get("parent");
-                User userParent=new User();
-                userParent.setUsername(parentName);
-                JSONArray manageArray=(JSONArray) jsonManagment.get("pupils");
-                Iterator i=manageArray.iterator();
-                if(parent.getClass().getSimpleName().equals("Board")){
-                    userParent=getUser(userParent);
-                    Board parent1=(Board)parent;
-                    Parent userParent1=(Parent)userParent;
-                    
-                    parent1.createParent(userParent1);//add parent to board's ParentList
-                    return parent1;
-
-                }else{
-                    while (i.hasNext()){
-                        JSONObject loopObject=(JSONObject) i.next();
-                        String pupilName=(String) loopObject.get("pupil");
-                        parent=getChild(pupilName,parent,urlString);
-                        
-                    }
-                    return parent;
-                }
-            }
-        } else{
-            User child=new User();
-            child.setUsername(managment);
-            child=getUser(child);
-            if(parent.getClass().getSimpleName().equals("Parent")){
-                Parent userParent=(Parent)parent;
-                Pupil child1=(Pupil)child;
-                userParent.addPupil(child1);
-                return userParent;
-            } else if(parent.getClass().getSimpleName().equals("Teacher")){
-                Teacher teacher=(Teacher) parent;
-                Pupil child1=(Pupil)child;
-                teacher.createPupil(child1);
-                return teacher;
-            }
-           
-                    
+    public Parent logParent(User newUser) throws IOException, ParseException{
+        Parent newParent=new Parent();
+        newParent.setUsername(newUser.getUsername());
+        if(newUser.getPassword()!=null){
+            newParent.setPassword(newUser.getPassword());
         }
-        return null;
-    }  
-    ///JSONArray.size();
-
-    private User getActivities(User user) throws MalformedURLException, IOException, ParseException {
-        String username=user.getUsername();
-        URL url = new URL("https://smspdata.firebaseio.com/user_act/"+username+"/.json");
+        newParent.setType(newUser.getType());
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+newParent.getUsername()+"/data.json");
         HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
         InputStream is=conn.getInputStream();
         if (conn.getResponseCode() == 200) {
@@ -312,6 +108,239 @@ public class ManageSystemWS {
             while ((line = br.readLine()) != null) {
                 all += line;
             }
+            conn.disconnect();
+            JSONParser parser=new JSONParser();
+            Object obj=parser.parse(all);
+            JSONObject jsonUser=(JSONObject) obj;
+            newParent.setFirst_name((String)jsonUser.get("first_name"));
+            newParent.setLast_name((String)jsonUser.get("last_name"));
+            String manages=(String)jsonUser.get("manages");
+            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+"/pupils.json");
+            conn=(HttpsURLConnection) url.openConnection();
+            is=conn.getInputStream();
+            if(conn.getResponseCode()==200){
+                br = new BufferedReader(new InputStreamReader(is));
+                all = "";
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser2=new JSONParser();
+                Object obj2=parser.parse(all);
+                JSONArray pupilArray=(JSONArray) obj2;
+                if(!pupilArray.isEmpty()){
+                    Iterator i=pupilArray.iterator();
+                    while (i.hasNext()){
+                        JSONObject loopObject=(JSONObject) i.next();
+                        String pupilUsername=(String) loopObject.get("pupil");
+                        User newPupil=new User();
+                        newPupil.setUsername(pupilUsername);
+                        newPupil.setType("PUPIL");
+                        newParent.addPupil(logPupil(newPupil));
+                    }
+                }
+            }
+            conn.disconnect();
+        }
+        return newParent;
+    }
+    
+    public Teacher logTeacher(User newUser) throws IOException, ParseException{
+        Teacher newTeacher=new Teacher();
+        newTeacher.setUsername(newUser.getUsername());
+        if(newUser.getPassword()!=null){
+            newTeacher.setPassword(newUser.getPassword());
+        }
+        newTeacher.setType(newUser.getType());
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+newTeacher.getUsername()+"/data.json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
+            JSONParser parser=new JSONParser();
+            Object obj=parser.parse(all);
+            JSONObject jsonUser=(JSONObject) obj;
+            newTeacher.setFirst_name((String)jsonUser.get("first_name"));
+            newTeacher.setLast_name((String)jsonUser.get("last_name"));
+            newTeacher.setPersonalActivities(getActivities(newTeacher.getUsername()));
+            String manages=(String)jsonUser.get("manages");
+            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+"/pupils.json");
+            conn=(HttpsURLConnection) url.openConnection();
+            is=conn.getInputStream();
+            if(conn.getResponseCode()==200){
+                br = new BufferedReader(new InputStreamReader(is));
+                all = "";
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser2=new JSONParser();
+                Object obj2=parser.parse(all);
+                JSONArray pupilArray=(JSONArray) obj2;
+                if(!pupilArray.isEmpty()){
+                    Iterator i=pupilArray.iterator();
+                    while (i.hasNext()){
+                        JSONObject loopObject=(JSONObject) i.next();
+                        String pupilUsername=(String) loopObject.get("pupil");
+                        User newPupil=new User();
+                        newPupil.setUsername(pupilUsername);
+                        newPupil.setType("PUPIL");
+                        newTeacher.createPupil(logPupil(newPupil));
+                    }
+                }
+            }
+            conn.disconnect();
+        }
+        return newTeacher;
+    }
+    public Board logBoard(User newUser) throws IOException, ParseException{
+        Board newBoard=new Board();
+        newBoard.setUsername(newUser.getUsername());
+        if(newUser.getPassword()!=null){
+            newBoard.setPassword(newUser.getPassword());
+        }
+        newBoard.setType(newUser.getType());
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+newBoard.getUsername()+"/data.json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
+            JSONParser parser=new JSONParser();
+            Object obj=parser.parse(all);
+            JSONObject jsonUser=(JSONObject) obj;
+            newBoard.setFirst_name((String)jsonUser.get("first_name"));
+            newBoard.setLast_name((String)jsonUser.get("last_name"));
+            newBoard.setPersonalActivities(getActivities(newBoard.getUsername()));
+            String manages=(String)jsonUser.get("manages");
+            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+"/classes.json");
+            conn=(HttpsURLConnection) url.openConnection();
+            is=conn.getInputStream();
+            if(conn.getResponseCode()==200){
+                br = new BufferedReader(new InputStreamReader(is));
+                all = "";
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser2=new JSONParser();
+                Object obj2=parser.parse(all);
+                JSONArray teacherArray=(JSONArray) obj2;
+                if(!teacherArray.isEmpty()){
+                    Iterator i=teacherArray.iterator();
+                    while (i.hasNext()){
+                        JSONObject loopObject=(JSONObject) i.next();
+                        String teacherUsername=(String) loopObject.get("class");
+                        teacherUsername=teacherUsername.substring(1);
+                        User newTeacher=new User();
+                        newTeacher.setUsername(teacherUsername);
+                        newTeacher.setType("TEACHER");
+                        newBoard.createTeacher(logTeacher(newTeacher));
+                    }
+                }
+            }
+            conn.disconnect();
+            url = new URL("https://smspdata.firebaseio.com/managment/"+manages+"/parents.json");
+            conn=(HttpsURLConnection) url.openConnection();
+            is=conn.getInputStream();
+            if(conn.getResponseCode()==200){
+                br = new BufferedReader(new InputStreamReader(is));
+                all = "";
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser2=new JSONParser();
+                Object obj2=parser.parse(all);
+                JSONArray parentArray=(JSONArray) obj2;
+                if(!parentArray.isEmpty()){
+                    Iterator i=parentArray.iterator();
+                    while (i.hasNext()){
+                        JSONObject loopObject=(JSONObject) i.next();
+                        String parentUsername=(String) loopObject.get("parent");
+                        parentUsername=parentUsername.substring(1);
+                        User newParent=new User();
+                        newParent.setUsername(parentUsername);
+                        newParent.setType("PARENT");
+                        newBoard.createParent(logParent(newParent));
+                    }
+                }
+            }
+            conn.disconnect();
+        }
+        return newBoard;
+        
+    }
+    public Admin logAdmin(User newUser) throws IOException, ParseException{
+        Admin newAdmin=new Admin();
+        newAdmin.setUsername(newUser.getUsername());
+        if(newUser.getPassword()!=null){
+            newAdmin.setPassword(newUser.getPassword());
+        }
+        newAdmin.setType(newUser.getType());
+        URL url = new URL("https://smspdata.firebaseio.com/users/"+newAdmin.getUsername()+"/data.json");
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
+            JSONParser parser=new JSONParser();
+            Object obj=parser.parse(all);
+            JSONObject jsonUser=(JSONObject) obj;
+            newAdmin.setFirst_name((String)jsonUser.get("first_name"));
+            newAdmin.setLast_name((String)jsonUser.get("last_name"));
+            String manages=(String)jsonUser.get("manages");
+            url = new URL("https://smspdata.firebaseio.com/managment/~all/schools.json");
+            conn=(HttpsURLConnection) url.openConnection();
+            is=conn.getInputStream();
+            if(conn.getResponseCode()==200){
+                br = new BufferedReader(new InputStreamReader(is));
+                all = "";
+                while ((line = br.readLine()) != null) {
+                    all += line;
+                }
+                JSONParser parser2=new JSONParser();
+                Object obj2=parser.parse(all);
+                JSONArray boardArray=(JSONArray) obj2;
+                if(!boardArray.isEmpty()){
+                    Iterator i=boardArray.iterator();
+                    while (i.hasNext()){
+                        JSONObject loopObject=(JSONObject) i.next();
+                        String boardUsername=(String) loopObject.get("school");
+                        boardUsername=boardUsername.substring(1);
+                        User newBoard=new User();
+                        newBoard.setUsername(boardUsername);
+                        newBoard.setType("BOARD");
+                        newAdmin.createBoard(logBoard(newBoard));
+                    }
+                }
+            }
+            conn.disconnect();
+        }
+        return newAdmin;
+    }
+
+    private ActivityList getActivities(String username) throws MalformedURLException, IOException, ParseException {
+        URL url = new URL("https://smspdata.firebaseio.com/user_act/"+username+"/.json");
+        ActivityList newList=new ActivityList();
+        HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+        InputStream is=conn.getInputStream();
+        if (conn.getResponseCode() == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String all = "", line;
+            while ((line = br.readLine()) != null) {
+                all += line;
+            }
+            conn.disconnect();
             JSONParser parser=new JSONParser();
             Object obj=parser.parse(all);
             JSONArray manageArray=(JSONArray) obj;
@@ -320,55 +349,38 @@ public class ManageSystemWS {
                 JSONObject activity=(JSONObject) i.next();
                 Activity loopAct=new Activity();
                 loopAct.setPupilComment((String) activity.get("comment"));
-                //configure Invoice
-                //
-                //
-                //And add image somehow
-                String idForAct=(String) activity.get("ID");
-                int actId=Integer.parseInt(idForAct);
+                loopAct.getPayment().setPaid((boolean) activity.get("paid"));
+                long idForAct=(long) activity.get("ID");
+                int actId=(int)idForAct;
                 loopAct.setActId(actId);
                 url = new URL("https://smspdata.firebaseio.com/activity/"+actId+"/.json");
-                HttpsURLConnection conn2=(HttpsURLConnection) url.openConnection();
-                InputStream is2=conn.getInputStream();
+                conn=(HttpsURLConnection) url.openConnection();
+                is=conn.getInputStream();
                 if (conn.getResponseCode() == 200) {
-                    BufferedReader br2 = new BufferedReader(new InputStreamReader(is2));
+                    br = new BufferedReader(new InputStreamReader(is));
                     all = "";
-                    line="";
                     while ((line = br.readLine()) != null) {
                         all += line;
                     }
                     JSONParser parser2=new JSONParser();
                     Object obj2=parser.parse(all);
-                    JSONObject actObj=(JSONObject) obj;
+                    JSONObject actObj=(JSONObject) obj2;
                     loopAct.setAuthor((String) actObj.get("author"));
                     loopAct.setTask((String) actObj.get("task"));
-                    //Complete invoice
-                    //
-                    //
+                    String freeCheck=(String) actObj.get("free");
+                    if(freeCheck.equals("true")){
+                        loopAct.setFree(true);
+                        loopAct.getPayment().setPrice(0);
+                    }else{
+                        loopAct.setFree(false);
+                        String price=(String) actObj.get("price");
+                        loopAct.getPayment().setPrice(Double.parseDouble(price));
+                    }
                 }
-                if(user.getClass().getSimpleName().equals("Admin")){
-                    Admin user1=(Admin) user;
-                    user1.createActivity(loopAct);
-                    return user1;
-                } else if(user.getClass().getSimpleName().equals("Board")){
-                    Board user1=(Board) user;
-                    user1.createActivity(loopAct);
-                    return user1;
-                } else if(user.getClass().getSimpleName().equals("Teacher")){
-                    Teacher user1=(Teacher) user;
-                    user1.createActivity(loopAct);
-                    return user1;
-                } else if(user.getClass().getSimpleName().equals("Pupil")){
-                    Pupil user1=(Pupil) user;
-                    user1.createActivity(loopAct);
-                    return user1;
-                }
-                       
+                newList.insertActivity(loopAct);
             }
-            
-            
         } 
-        return user;
+        return newList;
     }
     public Admin createBoard(Board newUser, Admin creator) throws MalformedURLException, ProtocolException, IOException{
         String firstName=newUser.getFirst_name();
