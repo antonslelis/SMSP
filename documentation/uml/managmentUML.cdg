@@ -169,7 +169,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ManageSystemWS" package="" visibility="public" xPosition="547.0" yPosition="1075.0">
+    <Class name="ManageSystemWS" package="" visibility="public" xPosition="447.0" yPosition="1065.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -215,27 +215,34 @@
         <Method name="logPupil" returnType="Pupil" visibility="public">
           <Argument type="Pupil" name="newUser"/>
         </Method>
+        <Method name="updateUser" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="first"/>
+          <Argument type="String" name="last"/>
+          <Argument type="String" name="type"/>
+        </Method>
       </Methods>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="has" source="ActivityList" target="Activity" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="Teacher" target="Pupil"/>
-    <HasRelation name="has" source="PupilList" target="Pupil" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <HasRelation name="has" source="Parent" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="Activity" target="Invoice" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="Pupil" target="ActivityList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="TeacherList" target="Teacher" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="Parent" target="User"/>
-    <HasRelation name="has" source="BoardList" target="Board" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="Admin" target="Board"/>
     <IsRelation name="is" source="Board" target="Teacher"/>
-    <HasRelation name="has" source="Admin" target="BoardList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="ParentList" target="Parent" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <HasRelation name="has" source="Board" target="ParentList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="has" source="Board" target="TeacherList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Admin" target="Board"/>
+    <HasRelation name="has" source="Pupil" target="ActivityList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="BoardList" target="Board" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="ActivityList" target="Activity" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="Activity" target="Invoice" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="use" source="ManageSystemWS" target="User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Teacher" target="Pupil"/>
+    <HasRelation name="has" source="ParentList" target="Parent" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="PupilList" target="Pupil" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="TeacherList" target="Teacher" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="Admin" target="BoardList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Parent" target="User"/>
     <HasRelation name="has" source="Teacher" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <IsRelation name="is" source="Pupil" target="User"/>
-    <UseRelation name="use" source="ManageSystemWS" target="User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="Parent" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="Board" target="ParentList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
