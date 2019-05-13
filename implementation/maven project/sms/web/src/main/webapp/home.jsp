@@ -1,6 +1,7 @@
 <%! private String type;
 %>
-<%@ page import="org.solent.group.project.model.*" %><%
+<%@ page import="org.solent.group.project.model.*" %>
+<%@ page import="java.util.List" %><%
 
 	//new webserver
 	ManageSystemWS webserver = new ManageSystemWS();
@@ -68,6 +69,7 @@
 
 		if (type.equals("ADMIN")) {
 			Admin admin_acc = (Admin) session.getAttribute("admin_acc");
+			//create new board with selected values
 			Board created_user = new Board();
 			created_user.setUsername(create_username);
 			created_user.setFirst_name(fname);
@@ -78,8 +80,8 @@
 			webserver.createBoard(created_user, admin_acc);
 		} else if (type.equals("BOARD")) {
 			Board board_acc = (Board) session.getAttribute("board_acc");
-			if (create_type.equals("TEACHER"))
-			{
+			if (create_type.equals("TEACHER")) {
+				//create new teacher with selected values
 				Teacher created_user = new Teacher();
 				created_user.setUsername(create_username);
 				created_user.setFirst_name(fname);
@@ -88,9 +90,8 @@
 				created_user.setType(create_type);
 				webserver.createTeacher(created_user, board_acc);
 
-			}
-			else if (create_type.equals("PARENT"))
-			{
+			} else if (create_type.equals("PARENT")) {
+				//create new parent with selected values
 				Parent created_user = new Parent();
 				created_user.setUsername(create_username);
 				created_user.setFirst_name(fname);
@@ -99,22 +100,41 @@
 				created_user.setType(create_type);
 				webserver.createParent(created_user, board_acc);
 
+			} else if (create_type.equals("PUPIL")) {
+				String teacher_un = request.getParameter("teacher_link");
+				String parent_un = request.getParameter("parent_link");
+
+				List<Teacher> teacherList = board_acc.getTeacherList().getTeacherList();
+				List<Parent> parentList = board_acc.getParentList().getParentList();
+
+				//loop through each teacher until it is found with the same username as the create page
+				for (Teacher teacher : teacherList){
+					if (teacher.getUsername().equals(teacher_un)){
+						session.setAttribute("teacher_acc", teacher);
+					}
+				}
+
+				//loop through each parent until it is found with the same username as the create page
+				for (Parent parent : parentList){
+					if (parent.getUsername().equals(parent_un)){
+						session.setAttribute("parent_acc", parent);
+					}
+				}
+
+				Parent parent_acc = (Parent) session.getAttribute("parent_acc");
+				Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
+
+				//create new pupil with selected values
+				Pupil created_user = new Pupil();
+				created_user.setUsername(create_username);
+				created_user.setFirst_name(fname);
+				created_user.setLast_name(lname);
+				created_user.setPassword(create_password);
+				created_user.setType(create_type);
+				webserver.createPupil(created_user, teacher_acc, parent_acc);
 			}
-		} else if (type.equals("TEACHER")) {
-			Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
-			Parent parent_acc = (Parent) session.getAttribute("parent_acc");
-
-			Pupil created_user = new Pupil();
-			created_user.setUsername(create_username);
-			created_user.setFirst_name(fname);
-			created_user.setLast_name(lname);
-			created_user.setPassword(create_password);
-			created_user.setType(create_type);
-			webserver.createPupil(created_user, teacher_acc, parent_acc);
 		}
-
 	}
-
 	session.setAttribute("acct_type", type);
 
 %>
@@ -139,7 +159,7 @@
 					<li><a href="./events.jsp">Events</a></li>
 					<li><a href="./report.jsp">Report</a></li>
 					<%  if (type != null){
-							if(type.equals("ADMIN") || type.equals("BOARD") || type.equals("TEACHER")) {
+							if(type.equals("ADMIN") || type.equals("BOARD")) {
 					%>
 								<li><a href="./createUser.jsp">Create User</a></li>
 					<%
@@ -153,8 +173,6 @@
 			</div> <!-- /nav_bar -->	
 			
 			<p> Welcome back <%= session.getAttribute("username") %></p>
-			<% Board newboard = (Board) session.getAttribute("board_acc"); %>
-			<%= newboard.getTeacherList().getListSize()%>
 		</div> <!-- /content -->
 	</div> <!-- /wrapper -->
 	

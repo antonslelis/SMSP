@@ -41,24 +41,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-	
-	/*
-	ManageSystemWS webserver = new ManageSystemWS();
-	User newUser = new User();
 
-	*/
-	
-	
-	
-	String school = request.getParameter("school_name");
-	String username = request.getParameter("username");
-	String password = request.getParameter("password");
-	String account = request.getParameter("access_level");
-
-
-	session.setAttribute("acct_type", account);
-	session.setAttribute("school_name", school);
-	
 	String action = (String) request.getParameter("action");
 	
 	//clears session when logout is pressed
@@ -66,10 +49,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
 	{
 		session.invalidate();
 	}
-
-
-	
-
 
       out.write("\r\n");
       out.write("\r\n");

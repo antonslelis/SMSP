@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="377c178b-ffd4-4fa3-b80a-378a8ede3eaa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ManageSystemWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ManageSystemWS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/sms-model-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/sms-model-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/events.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/createUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/events.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/classes/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/createUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/events.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/classes/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/lib/sms-model-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/WEB-INF/lib/sms-model-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/createUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/createUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/events.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/sms-web-1.0-SNAPSHOT/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/tmp/jsp/org/apache/jsp/createUser_jsp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/tmp/jsp/org/apache/jsp/home_jsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/target/tmp/jsp/org/apache/jsp/home_jsp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/rest-client/target/" />
@@ -42,14 +22,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-53">
+            <state relative-caret-position="252">
               <caret line="435" column="46" selection-start-line="435" selection-start-column="46" selection-end-line="435" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#createBoard#0;class#ManageSystemWS#0" />
                 <element signature="method#createTeacher#0;class#ManageSystemWS#0" />
                 <element signature="method#createParent#0;class#ManageSystemWS#0" />
-                <element signature="method#createPupil#0;class#ManageSystemWS#0" />
                 <element signature="method#updateUser#0;class#ManageSystemWS#0" />
                 <element signature="method#createActivity#0;class#ManageSystemWS#0" />
                 <element signature="method#updateActivity#0;class#ManageSystemWS#0" />
@@ -63,31 +42,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/main/webapp/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="46" column="56" lean-forward="true" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="56" />
+            <state relative-caret-position="437">
+              <caret line="135" column="9" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/login.jsp">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/createUser.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="153">
+              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/createUser.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/main/webapp/events.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-493">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="238">
+              <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -103,8 +77,8 @@
         <option value="$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java" />
         <option value="$PROJECT_DIR$/model/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/events.jsp" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/home.jsp" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/createUser.jsp" />
       </list>
@@ -202,7 +176,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557748973336" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557751606045" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -238,12 +212,12 @@
       <workItem from="1557240717981" duration="209000" />
       <workItem from="1557431324136" duration="766000" />
       <workItem from="1557500066292" duration="8204000" />
-      <workItem from="1557739343053" duration="9552000" />
+      <workItem from="1557739343053" duration="12620000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20592000" />
+    <option name="totallyTimeSpent" value="23660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -377,22 +351,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/target/classes/org/solent/group/project/model/ManageSystemWS.class">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/events.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/Teacher.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -408,16 +368,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/src/main/java/org/solent/group/project/model/ManageSystemWS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53">
+        <state relative-caret-position="252">
           <caret line="435" column="46" selection-start-line="435" selection-start-column="46" selection-end-line="435" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#createBoard#0;class#ManageSystemWS#0" />
             <element signature="method#createTeacher#0;class#ManageSystemWS#0" />
             <element signature="method#createParent#0;class#ManageSystemWS#0" />
-            <element signature="method#createPupil#0;class#ManageSystemWS#0" />
             <element signature="method#updateUser#0;class#ManageSystemWS#0" />
             <element signature="method#createActivity#0;class#ManageSystemWS#0" />
             <element signature="method#updateActivity#0;class#ManageSystemWS#0" />
@@ -429,13 +395,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="46" column="56" lean-forward="true" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="56" />
+        <state relative-caret-position="437">
+          <caret line="135" column="9" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/createUser.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/events.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

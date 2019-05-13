@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import org.solent.group.project.model.*;
+import java.util.List;
 
 public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,8 +45,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
 
 
 	//new webserver
@@ -114,6 +115,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 		if (type.equals("ADMIN")) {
 			Admin admin_acc = (Admin) session.getAttribute("admin_acc");
+			//create new board with selected values
 			Board created_user = new Board();
 			created_user.setUsername(create_username);
 			created_user.setFirst_name(fname);
@@ -124,8 +126,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 			webserver.createBoard(created_user, admin_acc);
 		} else if (type.equals("BOARD")) {
 			Board board_acc = (Board) session.getAttribute("board_acc");
-			if (create_type.equals("TEACHER"))
-			{
+			if (create_type.equals("TEACHER")) {
+				//create new teacher with selected values
 				Teacher created_user = new Teacher();
 				created_user.setUsername(create_username);
 				created_user.setFirst_name(fname);
@@ -134,9 +136,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 				created_user.setType(create_type);
 				webserver.createTeacher(created_user, board_acc);
 
-			}
-			else if (create_type.equals("PARENT"))
-			{
+			} else if (create_type.equals("PARENT")) {
+				//create new parent with selected values
 				Parent created_user = new Parent();
 				created_user.setUsername(create_username);
 				created_user.setFirst_name(fname);
@@ -145,22 +146,41 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 				created_user.setType(create_type);
 				webserver.createParent(created_user, board_acc);
 
+			} else if (create_type.equals("PUPIL")) {
+				String teacher_un = request.getParameter("teacher_link");
+				String parent_un = request.getParameter("parent_link");
+
+				List<Teacher> teacherList = board_acc.getTeacherList().getTeacherList();
+				List<Parent> parentList = board_acc.getParentList().getParentList();
+
+				//loop through each teacher until it is found with the same username as the create page
+				for (Teacher teacher : teacherList){
+					if (teacher.getUsername().equals(teacher_un)){
+						session.setAttribute("teacher_acc", teacher);
+					}
+				}
+
+				//loop through each parent until it is found with the same username as the create page
+				for (Parent parent : parentList){
+					if (parent.getUsername().equals(parent_un)){
+						session.setAttribute("parent_acc", parent);
+					}
+				}
+
+				Parent parent_acc = (Parent) session.getAttribute("parent_acc");
+				Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
+
+				//create new pupil with selected values
+				Pupil created_user = new Pupil();
+				created_user.setUsername(create_username);
+				created_user.setFirst_name(fname);
+				created_user.setLast_name(lname);
+				created_user.setPassword(create_password);
+				created_user.setType(create_type);
+				webserver.createPupil(created_user, teacher_acc, parent_acc);
 			}
-		} else if (type.equals("TEACHER")) {
-			Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
-			Parent parent_acc = (Parent) session.getAttribute("parent_acc");
-
-			Pupil created_user = new Pupil();
-			created_user.setUsername(create_username);
-			created_user.setFirst_name(fname);
-			created_user.setLast_name(lname);
-			created_user.setPassword(create_password);
-			created_user.setType(create_type);
-			webserver.createPupil(created_user, teacher_acc, parent_acc);
 		}
-
 	}
-
 	session.setAttribute("acct_type", type);
 
 
@@ -187,7 +207,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<li><a href=\"./report.jsp\">Report</a></li>\r\n");
       out.write("\t\t\t\t\t");
   if (type != null){
-							if(type.equals("ADMIN") || type.equals("BOARD") || type.equals("TEACHER")) {
+							if(type.equals("ADMIN") || type.equals("BOARD")) {
 					
       out.write("\r\n");
       out.write("\t\t\t\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
@@ -208,12 +228,6 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<p> Welcome back ");
       out.print( session.getAttribute("username") );
       out.write("</p>\r\n");
-      out.write("\t\t\t");
- Board newboard = (Board) session.getAttribute("board_acc"); 
-      out.write("\r\n");
-      out.write("\t\t\t");
-      out.print( newboard.getTeacherList().getListSize());
-      out.write("\r\n");
       out.write("\t\t</div> <!-- /content -->\r\n");
       out.write("\t</div> <!-- /wrapper -->\r\n");
       out.write("\t\r\n");
