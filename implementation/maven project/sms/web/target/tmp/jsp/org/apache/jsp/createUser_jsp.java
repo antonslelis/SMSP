@@ -3,13 +3,16 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import org.solent.group.project.model.Board;
 import org.solent.group.project.model.Parent;
-import org.solent.group.project.model.ParentList;
 import java.util.List;
+import org.solent.group.project.model.Teacher;
 
 public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
+ private List<Parent> parentList;
+	private List<Teacher> teacherList; 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -47,11 +50,18 @@ public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write('\r');
+      out.write('\n');
 
 	String account = (String) session.getAttribute("acct_type");
 
-	ParentList parentList = new ParentList();
-	List<Parent> list = parentList.getParentList();
+	if (!account.equals("ADMIN")) {
+		Board board_acc = (Board) session.getAttribute("board_acc");
+		//get both lists of school members
+		parentList = board_acc.getParentList().getParentList();
+		teacherList = board_acc.getTeacherList().getTeacherList();
+	}
 
       out.write("\r\n");
       out.write("\r\n");
@@ -69,37 +79,93 @@ public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t<input type=\"text\" name=\"last_name\" value=\"\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t<label id=\"user_label\">Username:</label>\r\n");
-      out.write("\t\t<input type=\"text\" name=\"username\"><br/>\r\n");
+      out.write("\t\t<input type=\"text\" name=\"username_c\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t<label id=\"pass_label\">Password:</label>\r\n");
-      out.write("\t\t<input type=\"password\" name=\"password\" value=\"\"><br/>\r\n");
+      out.write("\t\t<input type=\"password\" name=\"password_c\" value=\"\"><br/>\r\n");
       out.write("\r\n");
+      out.write("\t\t<label id=\"role_label\">Role:</label>\r\n");
       out.write("\t\t<select name=\"creation_level\">\r\n");
       out.write("\t\t");
  if (account.equals("ADMIN")) {
 		
       out.write("\r\n");
-      out.write("\t\t\t<option name=\"BOARD\">Board</option>\r\n");
+      out.write("\t\t\t<option name=\"BOARD\">BOARD</option>\r\n");
       out.write("\r\n");
       out.write("\t\t");
   }
 			else if (account.equals("BOARD")) {
 		
       out.write("\r\n");
-      out.write("\t\t\t<option name=\"TEACHER\">Teacher</option>\r\n");
-      out.write("\t\t\t<option name=\"PARENT\">Parent</option>\r\n");
-      out.write("\t\t");
-  }
-			else if (account.equals("TEACHER")) {
-		
-      out.write("\r\n");
-      out.write("\t\t\t<option name=\"PUPIL\">Pupil</option>\r\n");
+      out.write("\t\t\t<option name=\"TEACHER\">TEACHER</option>\r\n");
+      out.write("\t\t\t<option name=\"PARENT\">PARENT</option>\r\n");
+      out.write("\t\t\t<option name=\"PUPIL\">PUPIL</option>\r\n");
       out.write("\t\t");
 
 			}
 		
       out.write("\r\n");
       out.write("\t\t</select>\r\n");
+      out.write("\r\n");
+      out.write("\t\t<br/>\r\n");
+      out.write("\t\t<br/>\r\n");
+      out.write("\t\t<h3>Only change if PUPIL is selected above*</h3>\r\n");
+      out.write("\t\t<label id=\"parent_link_label\">*Parent for pupil:</label>\r\n");
+      out.write("\t\t");
+ if (account.equals("BOARD")){
+		
+      out.write("\r\n");
+      out.write("\t\t<select name=\"parent_link\">\r\n");
+      out.write("\t\t\t");
+
+			for (Parent parent : parentList){
+			
+      out.write("\r\n");
+      out.write("\t\t\t\t<option name=\"");
+      out.print( parent.getUsername());
+      out.write("\">\r\n");
+      out.write("\t\t\t\t\t");
+      out.print( parent.getUsername());
+      out.write("</option>\r\n");
+      out.write("\t\t\t");
+
+				}
+			
+      out.write("\r\n");
+      out.write("\t\t</select>\r\n");
+      out.write("\t\t");
+
+			}
+		
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t\t<label id=\"teacher_link_label\">*Teacher for pupil:</label>\r\n");
+      out.write("\t\t");
+ if (account.equals("BOARD")){
+		
+      out.write("\r\n");
+      out.write("\t\t<select name=\"teacher_link\">\r\n");
+      out.write("\t\t\t");
+
+				for (Teacher teacher : teacherList){
+			
+      out.write("\r\n");
+      out.write("\t\t\t<option name=\"");
+      out.print( teacher.getUsername());
+      out.write("\">\r\n");
+      out.write("\t\t\t\t");
+      out.print( teacher.getUsername());
+      out.write("</option>\r\n");
+      out.write("\t\t\t");
+
+				}
+			
+      out.write("\r\n");
+      out.write("\t\t</select>\r\n");
+      out.write("\t\t");
+
+			}
+		
       out.write("\r\n");
       out.write("\t\t<input type=\"hidden\" name=\"action\" value=\"createUser\">\r\n");
       out.write("\t\t<p><input type=\"submit\" id=\"createUser_btn\" value=\"Create user\"></p>\r\n");
