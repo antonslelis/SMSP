@@ -183,6 +183,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 	}
 	session.setAttribute("acct_type", type);
 
+	Pupil pupil_acc = (Pupil) session.getAttribute("pupil_acc");
+	Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
 
       out.write("\r\n");
       out.write("<html>\r\n");
@@ -203,18 +205,42 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div id=\"nav_bar\">\r\n");
       out.write("\t\t\t\t<!-- create list for nav bar -->\r\n");
       out.write("\t\t\t\t<ul>\r\n");
-      out.write("\t\t\t\t\t<li><a href=\"./events.jsp\">Events</a></li>\r\n");
-      out.write("\t\t\t\t\t<li><a href=\"./report.jsp\">Report</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"./home.jsp\">Home</a></li>\r\n");
       out.write("\t\t\t\t\t");
-  if (type != null){
-							if(type.equals("ADMIN") || type.equals("BOARD")) {
+ if (type != null){
+						if (type.equals("PUPIL")){
 					
       out.write("\r\n");
-      out.write("\t\t\t\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
+      out.write("\t\t\t\t\t\t<li><a href=\"./activities.jsp?id=");
+      out.print( pupil_acc);
+      out.write("\">Activities</a></li>\r\n");
+      out.write("\t\t\t\t\t");
+ }
+					else if (type.equals("BOARD")) {
+					
+      out.write("\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"./teachers.jsp\">Teachers</a></li>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t");
+ }
+					else if (type.equals("TEACHER")) {
+					
+      out.write("\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"./pupils.jsp?id=");
+      out.print(teacher_acc);
+      out.write("\">Pupils</a></li>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t");
+  }
+						if(type.equals("ADMIN") || type.equals("BOARD")) {
+					
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
       out.write("\t\t\t\t\t");
 
-							}
 						}
+					}
 					
       out.write("\r\n");
       out.write("\t\t\t\t\t<li id=\"acct_type\"> ");

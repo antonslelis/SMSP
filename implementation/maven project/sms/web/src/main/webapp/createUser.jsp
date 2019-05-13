@@ -36,7 +36,8 @@
 
 		<label id="role_label">Role:</label>
 		<select name="creation_level">
-		<% if (account.equals("ADMIN")) {
+		<% //display different options for each role
+			if (account.equals("ADMIN")) {
 		%>
 			<option name="BOARD">BOARD</option>
 
@@ -59,7 +60,8 @@
 		%>
 		<select name="parent_link">
 			<%
-			for (Parent parent : parentList){
+				//show each parent available from that board
+				for (Parent parent : parentList){
 			%>
 				<option name="<%= parent.getUsername()%>">
 					<%= parent.getUsername()%></option>
@@ -76,6 +78,7 @@
 		%>
 		<select name="teacher_link">
 			<%
+				//show each teacher available from that board
 				for (Teacher teacher : teacherList){
 			%>
 			<option name="<%= teacher.getUsername()%>">

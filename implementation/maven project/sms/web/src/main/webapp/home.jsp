@@ -137,6 +137,8 @@
 	}
 	session.setAttribute("acct_type", type);
 
+	Pupil pupil_acc = (Pupil) session.getAttribute("pupil_acc");
+	Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
 %>
 <html>
 <head>
@@ -156,15 +158,29 @@
 			<div id="nav_bar">
 				<!-- create list for nav bar -->
 				<ul>
-					<li><a href="./events.jsp">Events</a></li>
-					<li><a href="./report.jsp">Report</a></li>
-					<%  if (type != null){
-							if(type.equals("ADMIN") || type.equals("BOARD")) {
+					<li><a href="./home.jsp">Home</a></li>
+					<% if (type != null){
+						if (type.equals("PUPIL")){
 					%>
-								<li><a href="./createUser.jsp">Create User</a></li>
+						<li><a href="./activities.jsp?id=<%= pupil_acc%>">Activities</a></li>
+					<% }
+					else if (type.equals("BOARD")) {
+					%>
+					<li><a href="./teachers.jsp">Teachers</a></li>
+
+					<% }
+					else if (type.equals("TEACHER")) {
+					%>
+					<li><a href="./pupils.jsp?id=<%=teacher_acc%>">Pupils</a></li>
+
+
+					<%  }
+						if(type.equals("ADMIN") || type.equals("BOARD")) {
+					%>
+							<li><a href="./createUser.jsp">Create User</a></li>
 					<%
-							}
 						}
+					}
 					%>
 					<li id="acct_type"> <%= session.getAttribute("acct_type") %> </li>
 					<li><a href="./login.jsp?action=logout">Logout</a></li>

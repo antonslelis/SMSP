@@ -3,10 +3,18 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import org.solent.group.project.model.Board;
+import org.solent.group.project.model.Teacher;
+import org.solent.group.project.model.Pupil;
+import java.util.List;
 
-public final class events_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class members_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
+ private Board board_acc;
+	private Teacher teacher_acc;
+	private List<Teacher> teacherList;
+	private List<Pupil> pupilList; 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -41,10 +49,12 @@ public final class events_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-
-	//temp activity list for tests
-	String[] activity_list = {"activity 1", "activity 2", "activity 3", "activity 4", "activity 5", "activity 6", "activity 7"
-			, "activity 8", "activity 9", "activity 10", "activity 11", "activity 12", "activity 13"};
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write('\r');
+      out.write('\n');
 
 
 	String account = (String) session.getAttribute("acct_type");
@@ -55,10 +65,18 @@ public final class events_jsp extends org.apache.jasper.runtime.HttpJspBase
 		//Image uploadedFile = (Image) request.getParameter("image");
 		String event_name = (String) request.getParameter("name");
 		String comment = (String) request.getParameter("comment");
-		
-		//Activity activity = new Activity();
-		//activity.createActivity(event_name, comment, uploadedFile);
+
 	}
+
+	if (account.equals("TEACHER")){
+		teacher_acc = (Teacher) session.getAttribute("teacher_acc");
+		pupilList = teacher_acc.getPupilList().getPupilList();
+	}
+	else if (account.equals("BOARD")) {
+		board_acc = (Board) session.getAttribute("board_acc");
+		teacherList = board_acc.getTeacherList().getTeacherList();
+	}
+
 	
 
       out.write("\r\n");
@@ -67,24 +85,24 @@ public final class events_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<head>\r\n");
       out.write("  <link rel=\"stylesheet\" type=\"text/css\" href=\"./css/main.css\">\r\n");
       out.write("  <script src=\"./scripts/main.js\"></script>\r\n");
-      out.write("  <title>Events</title>\r\n");
+      out.write("  <title>Members</title>\r\n");
       out.write("</head>\r\n");
       out.write("<body onLoad=\"main()\">\r\n");
       out.write("\t<div id=\"wrapper\">\r\n");
       out.write("\t\t<div id=\"header\">\r\n");
-      out.write("\t\t\t<h1>Events page</h1>\r\n");
+      out.write("\t\t\t<h1>Members page</h1>\r\n");
       out.write("\t\t\t<p id=\"date\"></p>\r\n");
       out.write("\t\t\t<p id=\"time\"></p>\r\n");
       out.write("\t\t</div> <!-- /header -->\r\n");
       out.write("\t\t\r\n");
-      out.write("\t\t<div id=\"content_activities\">\r\n");
+      out.write("\t\t<div id=\"content_members\">\r\n");
       out.write("\t\t\t<div id=\"nav_bar\">\r\n");
       out.write("\t\t\t\t<!-- create list for nav bar -->\r\n");
       out.write("\t\t\t\t<ul>\r\n");
-      out.write("\t\t\t\t\t<li><a href=\"./events.jsp\">Events</a></li>\r\n");
-      out.write("\t\t\t\t\t<li><a href=\"./report.jsp\">Report</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"./home.jsp\">Home</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"./members.jsp\">Members</a></li>\r\n");
       out.write("\t\t\t\t\t");
- if(account.equals("ADMIN") || account.equals("BOARD")) {
+ if(account.equals("BOARD")) {
 					
       out.write("\r\n");
       out.write("\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
@@ -99,47 +117,49 @@ public final class events_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<li><a href=\"./login.jsp?action=logout\">Logout</a></li>\r\n");
       out.write("\t\t\t\t</ul>\r\n");
       out.write("\t\t\t\t\r\n");
-      out.write("\t\t\t</div> <!-- /nav_bar -->\t\r\n");
+      out.write("\t\t\t</div> <!-- /nav_bar -->\r\n");
+      out.write("\r\n");
       out.write("\t\t\t");
 
-				if(account.equals("TEACHER") || account.equals("BOARD")){
+			if (account.equals("TEACHER"))
+			{
+				for (Pupil pupil : pupilList){
 			
       out.write("\r\n");
-      out.write("\t\t\t\t\t<h2><a href=\"./addOrModifyActivity.jsp?action=createActivity\">Create Activity</a></h2>\r\n");
-      out.write("\t\t\t");
-
-				}
-				
-				for (int i=0; i < activity_list.length; i++)
-				{
-			
+      out.write("\t\t\t\t<h3 name=\"");
+      out.print(pupil);
+      out.write('"');
+      out.write('>');
+      out.print(pupil.getFirst_name() + " " + pupil.getLast_name());
+      out.write("</h3><br/>\r\n");
+      out.write("\t\t\t\t<a href=\"./addOrModifyActivity.jsp?action=createActivity&id=");
+      out.print(pupil);
+      out.write("\">Create Activity</a>\r\n");
       out.write("\r\n");
-      out.write("\t\t\t\t\t<h3>");
-      out.print(activity_list[i]);
-      out.write("</h3>\r\n");
-      out.write("\t\t\t\t\t");
-
-						if(account.equals("BOARD")){
-					
-      out.write("\r\n");
-      out.write("\t\t\t\t\t\t\t<a href=\"./addOrModifyActivity.jsp?action=modifyActivity&id=");
-      out.print(i+1);
-      out.write("\">Edit Activity</a><br/>\r\n");
-      out.write("\t\t\t\t\t\t\t<a href=\"./invoice.jsp?id=");
-      out.print(i+1);
-      out.write("\">Invoice</a>\r\n");
-      out.write("\t\t\t\t\t");
-
-						}
-					
-      out.write("\r\n");
-      out.write("\t\t\t\t\t<br/>\r\n");
       out.write("\t\t\t");
 
 				}
+			}
+			else if (account.equals("BOARD")) {
+
+				for (Teacher teacher : teacherList) {
 			
       out.write("\r\n");
-      out.write("\t\t\t\r\n");
+      out.write("\t\t\t\t<h3 name=\"");
+      out.print(teacher);
+      out.write('"');
+      out.write('>');
+      out.print(teacher.getFirst_name() + " " + teacher.getLast_name());
+      out.write("</h3><br/>\r\n");
+      out.write("\t\t\t\t<a href=\"teachers.jsp?id");
+      out.print(teacher);
+      out.write("\">Pupil list</a>\r\n");
+      out.write("\t\t\t");
+
+				}
+			}
+			
+      out.write("\r\n");
       out.write("\t\t\t\r\n");
       out.write("\t\t</div> <!-- /content_activities -->\r\n");
       out.write("\t</div> <!-- /wrapper -->\r\n");
