@@ -43,9 +43,9 @@
 			<input type="text" name="username"><br/>
 
 			<label id="password_label">Password:</label>
-			<input type="password" name="password"></input><br/>
+			<input type="password" name="password"><br/>
 			
-			<input type="hidden" name="action" value="validateLogin"></input>
+			<input type="hidden" name="action" value="validateLogin">
 			<p><input type="submit" id="login_button" value="Login"></p>
 		</fieldset>
 	</form>

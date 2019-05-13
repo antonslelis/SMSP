@@ -1,6 +1,6 @@
 <%
 	String account = (String) session.getAttribute("acct_type");
-	
+
 %>
 
 <html>
@@ -10,33 +10,39 @@
 </head>
 <body>
 	<form id="createUser_form" action="./home.jsp" method="post">
-			<label id="user_label">Username:</label>
-			<input type="text" name="name"><br/>
+		<label id="fname_label">First Name:</label>
+		<input type="text" name="first_name"><br/>
 
-			<label id="pass_label">Password:</label>
-			<input type="password" name="password" value=""></input><br/>
-			
-			<select>
-			<% if (account.equals("Admin")) {
-			%>
-				<option name="Board">Board</option>
-			
-			<%  }
-				else if (account.equals("Board")) {
-			%>
-				<option name="Teacher">Teacher</option>
-				<option name="Parent">Parent</option>
-			<%  }
-				else if (account.equals("Teacher")) {
-			%>
-				<option name="Pupil">Pupil</option>
-			<%
-				}
-			%>
-			</select>
-			
-			<input type="hidden" name="action" value="createUser"></input>
-			<p><input type="submit" id="createUser_btn" value="Create user"></p>
+		<label id="lname_label">Last Name:</label>
+		<input type="text" name="last_name" value=""><br/>
+
+		<label id="user_label">Username:</label>
+		<input type="text" name="username"><br/>
+
+		<label id="pass_label">Password:</label>
+		<input type="password" name="password" value=""><br/>
+
+		<select name="creation_level">
+		<% if (account.equals("ADMIN")) {
+		%>
+			<option name="BOARD">Board</option>
+
+		<%  }
+			else if (account.equals("BOARD")) {
+		%>
+			<option name="TEACHER">Teacher</option>
+			<option name="PARENT">Parent</option>
+		<%  }
+			else if (account.equals("TEACHER")) {
+		%>
+			<option name="PUPIL">Pupil</option>
+		<%
+			}
+		%>
+		</select>
+
+		<input type="hidden" name="action" value="createUser">
+		<p><input type="submit" id="createUser_btn" value="Create user"></p>
 		
 	</form>
 </body>

@@ -3,9 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import org.solent.group.project.model.Parent;
-import org.solent.group.project.model.ParentList;
-import java.util.List;
 
 public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,14 +41,9 @@ public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
 
 	String account = (String) session.getAttribute("acct_type");
 
-	ParentList parentList = new ParentList();
-	List<Parent> list = parentList.getParentList();
 
       out.write("\r\n");
       out.write("\r\n");
@@ -69,31 +61,31 @@ public final class createUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t<input type=\"text\" name=\"last_name\" value=\"\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t<label id=\"user_label\">Username:</label>\r\n");
-      out.write("\t\t<input type=\"text\" name=\"username\"><br/>\r\n");
+      out.write("\t\t<input type=\"text\" name=\"username_c\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t<label id=\"pass_label\">Password:</label>\r\n");
-      out.write("\t\t<input type=\"password\" name=\"password\" value=\"\"><br/>\r\n");
+      out.write("\t\t<input type=\"password\" name=\"password_c\" value=\"\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t<select name=\"creation_level\">\r\n");
       out.write("\t\t");
  if (account.equals("ADMIN")) {
 		
       out.write("\r\n");
-      out.write("\t\t\t<option name=\"BOARD\">Board</option>\r\n");
+      out.write("\t\t\t<option name=\"BOARD\">BOARD</option>\r\n");
       out.write("\r\n");
       out.write("\t\t");
   }
 			else if (account.equals("BOARD")) {
 		
       out.write("\r\n");
-      out.write("\t\t\t<option name=\"TEACHER\">Teacher</option>\r\n");
-      out.write("\t\t\t<option name=\"PARENT\">Parent</option>\r\n");
+      out.write("\t\t\t<option name=\"TEACHER\">TEACHER</option>\r\n");
+      out.write("\t\t\t<option name=\"PARENT\">PARENT</option>\r\n");
       out.write("\t\t");
   }
 			else if (account.equals("TEACHER")) {
 		
       out.write("\r\n");
-      out.write("\t\t\t<option name=\"PUPIL\">Pupil</option>\r\n");
+      out.write("\t\t\t<option name=\"PUPIL\">PUPIL</option>\r\n");
       out.write("\t\t");
 
 			}

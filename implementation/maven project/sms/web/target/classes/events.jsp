@@ -2,7 +2,8 @@
 	//temp activity list for tests
 	String[] activity_list = {"activity 1", "activity 2", "activity 3", "activity 4", "activity 5", "activity 6", "activity 7"
 			, "activity 8", "activity 9", "activity 10", "activity 11", "activity 12", "activity 13"};
-			
+
+
 	String account = (String) session.getAttribute("acct_type");
 	
 	String action = (String) request.getParameter("action");

@@ -8,12 +8,7 @@ import org.solent.group.project.model.*;
 public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
- private Admin admin_acc = null;
-	private Board board_acc = null;
-	private Teacher teacher_acc = null;
-	private Parent parent_acc = null;
-	private Pupil pupil_acc = null;
-	private boolean allowed = false;
+ private String type;
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
@@ -53,41 +48,52 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\n');
 
 
+	//new webserver
 	ManageSystemWS webserver = new ManageSystemWS();
 	User userCheck = new User();
 
+	//get all login info from post request from login page
 	String action = (String) request.getParameter("action");
-
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
+	//assign the value of the session username
+	if (session.getAttribute("username") == null) {
+		session.setAttribute("username", username);
+	}
+	//assign values to login test user if the details haven't been entered before
 
 	userCheck.setUsername(username);
 	userCheck.setPassword(password);
 
 	String errorMessage = "";
 
+	if (session.getAttribute("allowed") == null) {
+		session.setAttribute("allowed", false);
+	}
 
 
-
-	if (!allowed) {
+	if (session.getAttribute("allowed").equals(false)) {
 		try {
+			//try logging in test user
 			User logCheck = webserver.logIn(userCheck);
 			if (logCheck != null) {
-				String type = logCheck.getType();
+				//log user in based on account type
+				type = logCheck.getType();
 				if (type.equals("ADMIN")) {
-					webserver.logAdmin(logCheck);
+					session.setAttribute("admin_acc", webserver.logAdmin(logCheck));
 				} else if (type.equals("BOARD")) {
-					webserver.logBoard(logCheck);
+					session.setAttribute("board_acc", webserver.logBoard(logCheck));
 				} else if (type.equals("TEACHER")) {
-					webserver.logTeacher(logCheck);
+					session.setAttribute("teacher_acc", webserver.logTeacher(logCheck));
 				} else if (type.equals("PARENT")) {
-					webserver.logParent(logCheck);
+					session.setAttribute("parent_acc", webserver.logParent(logCheck));
 				} else if (type.equals("PUPIL")) {
-					webserver.logPupil(logCheck);
+					session.setAttribute("pupil_acc", webserver.logPupil(logCheck));
 				}
 				session.setAttribute("acct_type", type);
-				allowed = true;
+				session.setAttribute("allowed", true);
 			} else {
+				//redirect to login
 				response.sendRedirect("./accessError.html");
 			}
 		} catch (Exception e) {
@@ -97,15 +103,17 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 	if ("createUser".equals(action))
 	{
-		String type = (String) session.getAttribute("acct_type");
+		type = (String) session.getAttribute("acct_type");
 
-		String create_username = request.getParameter("username");
-		String create_password = request.getParameter("password");
+		//take in all create account parameters
+		String create_username = request.getParameter("username_c");
+		String create_password = request.getParameter("password_c");
 		String create_type = request.getParameter("creation_level");
 		String fname = request.getParameter("first_name");
 		String lname = request.getParameter("last_name");
 
 		if (type.equals("ADMIN")) {
+			Admin admin_acc = (Admin) session.getAttribute("admin_acc");
 			Board created_user = new Board();
 			created_user.setUsername(create_username);
 			created_user.setFirst_name(fname);
@@ -115,6 +123,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 			webserver.createBoard(created_user, admin_acc);
 		} else if (type.equals("BOARD")) {
+			Board board_acc = (Board) session.getAttribute("board_acc");
 			if (create_type.equals("TEACHER"))
 			{
 				Teacher created_user = new Teacher();
@@ -124,6 +133,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 				created_user.setPassword(create_password);
 				created_user.setType(create_type);
 				webserver.createTeacher(created_user, board_acc);
+
 			}
 			else if (create_type.equals("PARENT"))
 			{
@@ -134,8 +144,12 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 				created_user.setPassword(create_password);
 				created_user.setType(create_type);
 				webserver.createParent(created_user, board_acc);
+
 			}
 		} else if (type.equals("TEACHER")) {
+			Teacher teacher_acc = (Teacher) session.getAttribute("teacher_acc");
+			Parent parent_acc = (Parent) session.getAttribute("parent_acc");
+
 			Pupil created_user = new Pupil();
 			created_user.setUsername(create_username);
 			created_user.setFirst_name(fname);
@@ -147,8 +161,8 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 	}
 
-	String account = (String) session.getAttribute("acct_type");
-	
+	session.setAttribute("acct_type", type);
+
 
       out.write("\r\n");
       out.write("<html>\r\n");
@@ -172,13 +186,15 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<li><a href=\"./events.jsp\">Events</a></li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"./report.jsp\">Report</a></li>\r\n");
       out.write("\t\t\t\t\t");
- if(account.equals("ADMIN") || account.equals("BOARD") || account.equals("TEACHER")) {
+  if (type != null){
+							if(type.equals("ADMIN") || type.equals("BOARD") || type.equals("TEACHER")) {
 					
       out.write("\r\n");
-      out.write("\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li><a href=\"./createUser.jsp\">Create User</a></li>\r\n");
       out.write("\t\t\t\t\t");
 
-					}
+							}
+						}
 					
       out.write("\r\n");
       out.write("\t\t\t\t\t<li id=\"acct_type\"> ");
@@ -192,7 +208,12 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<p> Welcome back ");
       out.print( session.getAttribute("username") );
       out.write("</p>\r\n");
-      out.write("\t\t\t\r\n");
+      out.write("\t\t\t");
+ Board newboard = (Board) session.getAttribute("board_acc"); 
+      out.write("\r\n");
+      out.write("\t\t\t");
+      out.print( newboard.getTeacherList().getListSize());
+      out.write("\r\n");
       out.write("\t\t</div> <!-- /content -->\r\n");
       out.write("\t</div> <!-- /wrapper -->\r\n");
       out.write("\t\r\n");

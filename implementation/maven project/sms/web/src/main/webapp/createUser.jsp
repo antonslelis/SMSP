@@ -1,11 +1,10 @@
+<%@ page import="org.solent.group.project.model.Board" %>
 <%@ page import="org.solent.group.project.model.Parent" %>
-<%@ page import="org.solent.group.project.model.ParentList" %>
-<%@ page import="java.util.List" %>
-<%
+<%@ page import="java.util.List" %><%
 	String account = (String) session.getAttribute("acct_type");
+	Board teacher_acc = (Board) session.getAttribute("board_acc");
 
-	ParentList parentList = new ParentList();
-	List<Parent> list = parentList.getParentList();
+	List<Parent> parentList =
 %>
 
 <html>
@@ -22,28 +21,30 @@
 		<input type="text" name="last_name" value=""><br/>
 
 		<label id="user_label">Username:</label>
-		<input type="text" name="username"><br/>
+		<input type="text" name="username_c"><br/>
 
 		<label id="pass_label">Password:</label>
-		<input type="password" name="password" value=""><br/>
+		<input type="password" name="password_c" value=""><br/>
 
 		<select name="creation_level">
 		<% if (account.equals("ADMIN")) {
 		%>
-			<option name="BOARD">Board</option>
+			<option name="BOARD">BOARD</option>
 
 		<%  }
 			else if (account.equals("BOARD")) {
 		%>
-			<option name="TEACHER">Teacher</option>
-			<option name="PARENT">Parent</option>
-		<%  }
-			else if (account.equals("TEACHER")) {
-		%>
-			<option name="PUPIL">Pupil</option>
+			<option name="TEACHER">TEACHER</option>
+			<option name="PARENT">PARENT</option>
+			<option name="PUPIL">PUPIL</option>
 		<%
 			}
 		%>
+		</select>
+
+		<select>
+			<option></option>
+
 		</select>
 
 		<input type="hidden" name="action" value="createUser">
