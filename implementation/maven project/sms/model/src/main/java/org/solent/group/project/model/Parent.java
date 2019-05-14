@@ -1,4 +1,10 @@
 package org.solent.group.project.model;
+
+/**
+ *
+ * @author Andre
+ */
+
 public class Parent extends User {
 
     private String first_name;

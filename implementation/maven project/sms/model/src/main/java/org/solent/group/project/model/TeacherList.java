@@ -2,9 +2,15 @@ package org.solent.group.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Andre
+ */
+
+
 public class TeacherList {
 
-    private List<Teacher> teacherList=new ArrayList();
+    private List<Teacher> teacherList=new ArrayList<Teacher>();
     int teacherSize=0;
 
     public List<Teacher> getTeacherList() {

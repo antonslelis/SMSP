@@ -9,12 +9,9 @@ import java.util.List;
 
 public class ActivityList {
 
-<<<<<<< HEAD
     private List<Activity> activityList = new ArrayList<Activity>();
-=======
-    private List<Activity> activityList=new ArrayList();
+  
     private int listSize=0;
->>>>>>> 6aa23edda98a32493fd4a68e97700bb17b9c1e62
 
     public Activity getActivitybyId(int actId) {
         
@@ -77,16 +74,14 @@ public class ActivityList {
         return null; 
     }
     
-<<<<<<< HEAD
     public int getSize(){
         return activityList.size(); 
     }
-=======
+    
     public int getListSize(){
         
         return listSize; 
         
     }   
->>>>>>> 6aa23edda98a32493fd4a68e97700bb17b9c1e62
     
 }

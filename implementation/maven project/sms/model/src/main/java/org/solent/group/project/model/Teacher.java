@@ -1,4 +1,11 @@
 package org.solent.group.project.model;
+
+/**
+ *
+ * @author Andre
+ */
+
+
 public class Teacher extends Pupil {
 
     private PupilList pupilList= new PupilList();

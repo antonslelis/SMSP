@@ -2,6 +2,13 @@ package org.solent.group.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Andre
+ */
+
+
+
 public class PupilList {
 
     private List<Pupil> pupilList=new ArrayList();

@@ -78,18 +78,15 @@ public class Activity {
     public void setPayment(Invoice payment) {
         this.payment = payment;
     }
-    
-<<<<<<< HEAD
+
     //activity should have a function to create an invoice 
     @Override
     public String toString(){
         
-        return "Activity ID: " + String.valueOf(actId) + " Author ID: " + String.valueOf(authorId) + " Task: " + task; 
+        return "Activity ID: " + String.valueOf(actId) + " Author ID: " + author + " Task: " + task; 
     
     }
 
     
-    
-=======
->>>>>>> 6aa23edda98a32493fd4a68e97700bb17b9c1e62
+   
 }

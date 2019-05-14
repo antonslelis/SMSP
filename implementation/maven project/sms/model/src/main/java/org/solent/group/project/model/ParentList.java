@@ -2,9 +2,14 @@ package org.solent.group.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Andre
+ */
+
 public class ParentList {
 
-    private List<Parent> parentList=new ArrayList();
+    private List<Parent> parentList= new ArrayList<Parent>();
     int parentSize=0;
 
     public List<Parent> getParentList() {

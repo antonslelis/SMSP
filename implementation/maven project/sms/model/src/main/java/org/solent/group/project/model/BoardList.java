@@ -2,8 +2,13 @@ package org.solent.group.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Andre
+ */
+
 public class BoardList {
-    private List<Board> boardList;
+    private List<Board> boardList = new ArrayList<Board>();
     int listsize=0;
 
     public BoardList() {

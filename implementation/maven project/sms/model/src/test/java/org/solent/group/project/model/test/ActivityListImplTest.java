@@ -25,17 +25,14 @@ public class ActivityListImplTest {
         Activity activity = new Activity();
 
         activity.setActId(1);
-        activity.setAuthorId(1);
-        activity.setPupilId(2);
+        activity.setAuthor("AuthorExample");
         activity.setTask("Example task");
         
         ac.insertActivity(activity);
         
         Activity testAc = ac.getActivitybyId(1); 
         
-        assertEquals(1, testAc.getAuthorId());
         assertEquals(1, testAc.getActId());
-        assertEquals(2, testAc.getPupilId());
         
         System.out.print("############################## " + testAc.toString());
         
@@ -50,8 +47,6 @@ public class ActivityListImplTest {
         Activity activity = new Activity();
 
         activity.setActId(ACTIVITY_ID);
-        activity.setAuthorId(1);
-        activity.setPupilId(2);
         activity.setTask("Example task");
         
         ac.insertActivity(activity);
@@ -71,7 +66,6 @@ public class ActivityListImplTest {
         Activity activityToDelete = new Activity();
         //activity to delete 
         activityToDelete.setActId(ACTIVITY_ID);
-        activityToDelete.setAuthorId(3);
         activityToDelete.setTask("Example task 1"); 
         
         ac.insertActivity(activityToDelete); 
@@ -82,7 +76,6 @@ public class ActivityListImplTest {
         Activity ac1 = new Activity(); 
         
         ac1.setActId(2);
-        ac1.setAuthorId(5);
         ac1.setTask("Example task 2");
         
         ac.insertActivity(ac1);
@@ -91,7 +84,6 @@ public class ActivityListImplTest {
         Activity ac2 = new Activity(); 
         
         ac2.setActId(2);
-        ac2.setAuthorId(5);
         ac2.setTask("Example task 2");
         
         ac.insertActivity(ac2); 
