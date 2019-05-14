@@ -77,7 +77,7 @@ public class PupilList {
         }
     }
     
-        public void updatePupilsActivity(int id, String newComment, boolean isPaid){
+    public void updatePupilsActivity(int id, String newComment, boolean isPaid){
         
         int size = pupilList.size(); 
         int i = 0; 
@@ -88,4 +88,6 @@ public class PupilList {
         }
 
     }
+
+
 }

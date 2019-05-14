@@ -63,4 +63,8 @@ public class Pupil extends User {
     public void setParentId(int parentId) {
         this.parentId = parentId;
     }
+    
+    public Activity getActivityById(int id){
+        return personalActivities.getActivitybyId(id);
+    }
 }

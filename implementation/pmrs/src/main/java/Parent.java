@@ -5,9 +5,11 @@ public class Parent extends User {
     private String last_name;
 
     private PupilList pupilList;
+    
 
+    //call update method and set it to true
     public boolean makePayment(int activityId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return false;
     }
 
     public String getFirst_name() {

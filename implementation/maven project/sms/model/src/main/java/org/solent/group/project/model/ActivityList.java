@@ -1,9 +1,15 @@
 package org.solent.group.project.model;
+import java.util.ArrayList;
 import java.util.List;
+
+/**
+ *
+ * @author Andre
+ */
 
 public class ActivityList {
 
-    private List<Activity> activityList;
+    private List<Activity> activityList = new ArrayList<Activity>();
 
     public Activity getActivitybyId(int actId) {
         
@@ -61,6 +67,10 @@ public class ActivityList {
      
         return activity; 
      
+    }
+    
+    public int getSize(){
+        return activityList.size(); 
     }
     
 }

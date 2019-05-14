@@ -1,6 +1,11 @@
 package org.solent.group.project.model;
 import java.awt.Image;
 
+/**
+ *
+ * @author Andre
+ */
+
 public class Activity {
 
     private int actId;
@@ -84,6 +89,13 @@ public class Activity {
     }
     
     //activity should have a function to create an invoice 
+    @Override
+    public String toString(){
+        
+        return "Activity ID: " + String.valueOf(actId) + " Author ID: " + String.valueOf(authorId) + " Task: " + task; 
+    
+    }
+
     
     
 }

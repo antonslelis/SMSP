@@ -1,4 +1,10 @@
 package org.solent.group.project.model;
+
+/**
+ *
+ * @author Andre
+ */
+
 public class Board extends Teacher {
 
     private TeacherList teacherList;
