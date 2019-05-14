@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sms-model" />
-        <module name="sms-rest-client" />
         <module name="sms-web" />
       </profile>
     </annotationProcessing>

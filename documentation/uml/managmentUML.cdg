@@ -6,17 +6,16 @@
       <Fields>
         <Field name="username" type="String" visibility="private"/>
         <Field name="password" type="String" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Pupil" package="" visibility="public" xPosition="916.0" yPosition="499.0">
+    <Class name="Pupil" package="" visibility="public" xPosition="916.0" yPosition="524.0">
       <Fields>
         <Field name="personalActivities" type="ActivityList" visibility="private"/>
         <Field name="first_name" type="String" visibility="private"/>
         <Field name="last_name" type="String" visibility="private"/>
-        <Field name="seniorId" type="int" visibility="private"/>
-        <Field name="parentId" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods>
@@ -25,9 +24,6 @@
         </Method>
         <Method name="modifyActivity" returnType="Activity" visibility="public">
           <Argument type="Activity" name="updAct"/>
-        </Method>
-        <Method name="deleteActivity" returnType="boolean" visibility="public">
-          <Argument type="int" name="actId"/>
         </Method>
       </Methods>
     </Class>
@@ -38,7 +34,6 @@
         <Field name="task" type="String" visibility="private"/>
         <Field name="uploadedImage" type="Image" visibility="private"/>
         <Field name="pupilComment" type="String" visibility="private"/>
-        <Field name="pupilId" type="int" visibility="private"/>
         <Field name="free" type="boolean" visibility="private"/>
         <Field name="payment" type="Invoice" visibility="private"/>
       </Fields>
@@ -48,6 +43,7 @@
     <Class name="ActivityList" package="" visibility="public" xPosition="1231.0" yPosition="556.0">
       <Fields>
         <Field name="activityList" type="List&lt;Activity&gt;" visibility="private"/>
+        <Field name="listSize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods>
@@ -59,6 +55,7 @@
     <Class name="PupilList" package="" visibility="public" xPosition="624.0" yPosition="605.0">
       <Fields>
         <Field name="pupilList" type="List&lt;Pupil&gt;" visibility="private"/>
+        <Field name="listSize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
@@ -89,6 +86,7 @@
     <Class name="TeacherList" package="" visibility="public" xPosition="447.0" yPosition="389.0">
       <Fields>
         <Field name="teacherList" type="List&lt;Teacher&gt;" visibility="private"/>
+        <Field name="teacherSize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
@@ -118,15 +116,6 @@
         <Method name="updateParent" returnType="Parent" visibility="public">
           <Argument type="Parent" name="updParent"/>
         </Method>
-        <Method name="deletePupil" returnType="int" visibility="public">
-          <Argument type="int" name="pupilId"/>
-        </Method>
-        <Method name="deleteParent" returnType="int" visibility="public">
-          <Argument type="int" name="parentId"/>
-        </Method>
-        <Method name="deleteTeacher" returnType="int" visibility="public">
-          <Argument type="int" name="teacherId"/>
-        </Method>
       </Methods>
     </Class>
     <Class name="Parent" package="" visibility="public" xPosition="547.0" yPosition="838.0">
@@ -145,6 +134,7 @@
     <Class name="ParentList" package="" visibility="public" xPosition="188.0" yPosition="524.0">
       <Fields>
         <Field name="parentList" type="List&lt;Parent&gt;" visibility="private"/>
+        <Field name="parentSize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
@@ -160,6 +150,7 @@
     <Class name="BoardList" package="" visibility="public" xPosition="566.0" yPosition="155.0">
       <Fields>
         <Field name="boardList" type="List&lt;Board&gt;" visibility="private"/>
+        <Field name="listsize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
@@ -176,62 +167,82 @@
         <Method name="updateBoard" returnType="Board" visibility="public">
           <Argument type="Board" name="updBoard"/>
         </Method>
-        <Method name="deleteBoard" returnType="boolean" visibility="public">
-          <Argument type="int" name="boadId"/>
-        </Method>
       </Methods>
     </Class>
-    <Class name="ManageSystemWS" package="" visibility="public" xPosition="547.0" yPosition="1068.0">
+    <Class name="ManageSystemWS" package="" visibility="public" xPosition="447.0" yPosition="1065.0">
       <Fields/>
       <Constructors/>
       <Methods>
         <Method name="logIn" returnType="User" visibility="public">
           <Argument type="User" name="newUser"/>
         </Method>
-        <Method name="createUser" returnType="User" visibility="public">
-          <Argument type="User" name="newUser"/>
-          <Argument type="User" name="creator"/>
-          <Argument type="User" name="parent"/>
-        </Method>
-        <Method name="updateUser" returnType="User" visibility="public">
-          <Argument type="User" name="updUser"/>
-        </Method>
-        <Method name="deleteUser" returnType="boolean" visibility="public">
-          <Argument type="int" name="userId"/>
-        </Method>
         <Method name="createActivity" returnType="Activity" visibility="public">
           <Argument type="Activity" name="newActivity"/>
         </Method>
         <Method name="updateActivity" returnType="Activity" visibility="public">
           <Argument type="Activity" name="updActivity"/>
+          <Argument type="String" name="username"/>
         </Method>
-        <Method name="deleteActivity" returnType="boolean" visibility="public">
-          <Argument type="int" name="actId"/>
+        <Method name="createBoard" returnType="Admin" visibility="public">
+          <Argument type="Board" name="newUser"/>
+          <Argument type="Admin" name="creator"/>
         </Method>
-        <Method name="makePayment" returnType="boolean" visibility="public">
-          <Argument type="int" name="activityId"/>
+        <Method name="createTeacher" returnType="Board" visibility="public">
+          <Argument type="Teacher" name="newUser"/>
+          <Argument type="Board" name="creator"/>
+        </Method>
+        <Method name="createParent" returnType="Board" visibility="public">
+          <Argument type="Parent" name="newUser"/>
+          <Argument type="Board" name="creator"/>
+        </Method>
+        <Method name="createPupil" returnType="Teacher" visibility="public">
+          <Argument type="Pupil" name="newUser"/>
+          <Argument type="Teacher" name="creator"/>
+          <Argument type="Parent" name="parent"/>
+        </Method>
+        <Method name="logAdmin" returnType="Admin" visibility="public">
+          <Argument type="Admin" name="newUser"/>
+        </Method>
+        <Method name="logBoard" returnType="Board" visibility="public">
+          <Argument type="Board" name="newUser"/>
+        </Method>
+        <Method name="logTeacher" returnType="Teacher" visibility="public">
+          <Argument type="Teacher" name="newUser"/>
+        </Method>
+        <Method name="logParent" returnType="Parent" visibility="public">
+          <Argument type="Parent" name="newUser"/>
+        </Method>
+        <Method name="logPupil" returnType="Pupil" visibility="public">
+          <Argument type="Pupil" name="newUser"/>
+        </Method>
+        <Method name="updateUser" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="first"/>
+          <Argument type="String" name="last"/>
+          <Argument type="String" name="type"/>
         </Method>
       </Methods>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <IsRelation name="is" source="Teacher" target="Pupil"/>
-    <HasRelation name="has" source="Board" target="ParentList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="Admin" target="BoardList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="Parent" target="User"/>
-    <HasRelation name="has" source="Pupil" target="ActivityList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <UseRelation name="use" source="ManageSystemWS" target="User" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="Teacher" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <IsRelation name="is" source="Board" target="Teacher"/>
+    <HasRelation name="has" source="Board" target="TeacherList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Admin" target="Board"/>
+    <HasRelation name="has" source="Pupil" target="ActivityList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="BoardList" target="Board" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="ActivityList" target="Activity" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="has" source="Activity" target="Invoice" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="use" source="ManageSystemWS" target="User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Teacher" target="Pupil"/>
+    <HasRelation name="has" source="ParentList" target="Parent" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
     <HasRelation name="has" source="PupilList" target="Pupil" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
     <HasRelation name="has" source="TeacherList" target="Teacher" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <HasRelation name="has" source="Activity" target="Invoice" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="Admin" target="BoardList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Parent" target="User"/>
+    <HasRelation name="has" source="Teacher" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <IsRelation name="is" source="Pupil" target="User"/>
-    <HasRelation name="has" source="ParentList" target="Parent" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <HasRelation name="has" source="BoardList" target="Board" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <HasRelation name="has" source="Board" target="TeacherList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="has" source="ActivityList" target="Activity" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="Admin" target="Board"/>
     <HasRelation name="has" source="Parent" target="PupilList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="Board" target="ParentList" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

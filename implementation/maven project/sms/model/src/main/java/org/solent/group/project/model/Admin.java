@@ -7,17 +7,21 @@ package org.solent.group.project.model;
 
 public class Admin extends Board {
 
-    private BoardList boardList;
+    private BoardList boardList=new BoardList();
+    
+    public BoardList getBoardList() {
+        return boardList;
+    }
 
     public Board createBoard(Board newBoard) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        boardList.insertBoard(newBoard); 
+        
+        return newBoard; 
     }
 
     public Board updateBoard(Board updBoard) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int deleteBoard(int boadId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        boardList.updateBoard(updBoard); 
+        
+        return updBoard; 
     }
 }

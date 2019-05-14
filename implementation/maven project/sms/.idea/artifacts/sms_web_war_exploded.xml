@@ -17,7 +17,7 @@
           <element id="archive" name="sms-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="sms-model" />
           </element>
-          <element id="library" level="project" name="Maven: org.json:json:20150729" />
+          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
           <element id="library" level="project" name="Maven: org.solent.group.project:sms-dao-jaxb:1.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: org.solent.group.project:sms-service:1.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: org.glassfish.jersey.core:jersey-server:2.17" />

@@ -41,24 +41,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-	
-	/*
-	ManageSystemWS webserver = new ManageSystemWS();
-	User newUser = new User();
 
-	*/
-	
-	
-	
-	String school = request.getParameter("school_name");
-	String username = request.getParameter("username");
-	String password = request.getParameter("password");
-	String account = request.getParameter("access_level");
-
-
-	session.setAttribute("acct_type", account);
-	session.setAttribute("school_name", school);
-	
 	String action = (String) request.getParameter("action");
 	
 	//clears session when logout is pressed
@@ -66,30 +49,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
 	{
 		session.invalidate();
 	}
-	
-	/*
-	newUser.setUsername(username);
-	newUser.setPassword(password);
-
-	String errorMessage = "";
-
-	if ("signUpUser".equals(action))
-	{
-		try {
-			webserver.createUser(newUser);
-		}
-		catch (Exception e){
-			errorMessage = "failed to create " + e.getMessage();
-		}
-	}
-	*/
-
-	
-	//temp school list for tests
-	String[] school_list = {"school 1", "school 2", "school 3"};
-
-	
-
 
       out.write("\r\n");
       out.write("\r\n");
@@ -103,53 +62,17 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\t<form id=\"login_form\" action=\"./home.jsp\" method=\"post\">\r\n");
       out.write("\t\t<fieldset id=\"login\">\r\n");
-      out.write("\t\t\t<label id=\"school_label\">School Name:</label>\r\n");
-      out.write("\t\t\t<select name=\"school_name\">\r\n");
-      out.write("\t\t\t\t");
-
-					for (int i=0; i<school_list.length; i++)
-					{
-						
-				
-      out.write("\r\n");
-      out.write("\t\t\t\t\t\t<option value=\"");
-      out.print( school_list[i] );
-      out.write('"');
-      out.write('>');
-      out.print( school_list[i] );
-      out.write("</option>\r\n");
-      out.write("\t\t\t\t");
-
-					}
-				
-      out.write("\r\n");
-      out.write("\t\t\t</select>\r\n");
-      out.write("\t\t\r\n");
       out.write("\t\t\t<label id=\"username_label\">Username:</label>\r\n");
       out.write("\t\t\t<input type=\"text\" name=\"username\"><br/>\r\n");
       out.write("\r\n");
       out.write("\t\t\t<label id=\"password_label\">Password:</label>\r\n");
-      out.write("\t\t\t<input type=\"password\" name=\"password\"></input><br/>\r\n");
+      out.write("\t\t\t<input type=\"password\" name=\"password\"><br/>\r\n");
       out.write("\t\t\t\r\n");
-      out.write("\t\t\t<label id=\"access_label\">Access Level:</label>\r\n");
-      out.write("\t\t\t<select name=\"access_level\">\r\n");
-      out.write("\t\t\t\t<option value=\"Admin\">Admin</option>\r\n");
-      out.write("\t\t\t\t<option value=\"Board\">Board</option>\r\n");
-      out.write("\t\t\t\t<option value=\"Teacher\">Teacher</option>\r\n");
-      out.write("\t\t\t\t<option value=\"Parent\">Parent</option>\r\n");
-      out.write("\t\t\t</select>\r\n");
-      out.write("\t\t\t\r\n");
-      out.write("\t\t\t<input type=\"hidden\" name=\"action\" value=\"validateLogin\"></input>\r\n");
+      out.write("\t\t\t<input type=\"hidden\" name=\"action\" value=\"validateLogin\">\r\n");
       out.write("\t\t\t<p><input type=\"submit\" id=\"login_button\" value=\"Login\"></p>\r\n");
       out.write("\t\t</fieldset>\r\n");
       out.write("\t</form>\r\n");
-      out.write("\t\r\n");
-      out.write("\t<form id=\"signup_form\" action=\"./signup.jsp\">\r\n");
-      out.write("\t\t<fieldset id=\"signup\">\r\n");
-      out.write("\t\t\t<p>New to SMS?</p>\r\n");
-      out.write("\t\t\t<p><input type=\"submit\" id=\"signup_button\" value=\"Sign up Now!\"></p>\r\n");
-      out.write("\t\t</fieldset>\r\n");
-      out.write("\t</form>\r\n");
+      out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

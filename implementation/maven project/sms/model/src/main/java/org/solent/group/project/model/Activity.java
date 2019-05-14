@@ -10,7 +10,7 @@ public class Activity {
 
     private int actId;
 
-    private int authorId;
+    private String author; 
 
     private String task;
 
@@ -18,11 +18,10 @@ public class Activity {
 
     private String pupilComment;
 
-    private int pupilId;
-
     private boolean free;
 
-    private Invoice payment;
+    private Invoice payment=new Invoice();
+   
 
     public int getActId() {
         return actId;
@@ -32,12 +31,12 @@ public class Activity {
         this.actId = actId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTask() {
@@ -64,14 +63,6 @@ public class Activity {
         this.pupilComment = pupilComment;
     }
 
-    public int getPupilId() {
-        return pupilId;
-    }
-
-    public void setPupilId(int pupilId) {
-        this.pupilId = pupilId;
-    }
-
     public boolean isFree() {
         return free;
     }
@@ -88,6 +79,7 @@ public class Activity {
         this.payment = payment;
     }
     
+<<<<<<< HEAD
     //activity should have a function to create an invoice 
     @Override
     public String toString(){
@@ -98,4 +90,6 @@ public class Activity {
 
     
     
+=======
+>>>>>>> 6aa23edda98a32493fd4a68e97700bb17b9c1e62
 }

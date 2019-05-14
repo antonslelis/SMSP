@@ -5,7 +5,7 @@ public class Parent extends User {
 
     private String last_name;
 
-    private PupilList pupilList;
+    private PupilList pupilList=new PupilList();
 
     public boolean makePayment(int activityId) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -33,5 +33,9 @@ public class Parent extends User {
 
     public void setPupilList(PupilList pupilList) {
         this.pupilList = pupilList;
+    }
+    
+    public void addPupil(Pupil pupil){
+        pupilList.insertPupil(pupil); 
     }
 }

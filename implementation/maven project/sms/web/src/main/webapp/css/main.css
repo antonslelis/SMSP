@@ -4,7 +4,6 @@ body {
 }
 
 h1, h2 {
-	font: arial;
 	font-size: 25px;
 	text-align: center;
 }
@@ -18,8 +17,7 @@ h1, h2 {
 	text-align: center;
 }
 
-#content_activities {
-	font: arial;
+#content_members {
 	text-align: center;
 }
 
@@ -45,7 +43,7 @@ label {
 #nav_bar li {
     list-style-type: none;
 	display: inline;
-	padding-right: 15%;
+	padding-right: 10%;
 }
 
 a {
@@ -57,5 +55,7 @@ a {
 }
 
 #content_activities a, a:visited, a:link{
+	color:grey;
+}visited, a:link{
 	color:grey;
 }

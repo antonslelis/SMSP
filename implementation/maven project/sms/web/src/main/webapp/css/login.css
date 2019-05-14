@@ -8,7 +8,7 @@ h1 {
 	text-align: center;
 }
 
-#login, #signup, #return {
+#login, #return {
 	margin: 0 auto;
 	width: 15%;
 	border: solid black 2px;

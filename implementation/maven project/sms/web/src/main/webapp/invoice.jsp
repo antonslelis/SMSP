@@ -15,7 +15,7 @@
 			<input type="text" name="name"><br/>
 
 			<label id="price_label">Price:</label>
-			<input type="number" name="price" value="£"></input><br/>
+			<input type="number" name="price" value=""></input><br/>
 			
 			<input type="hidden" name="action" value="createInvoice"></input>
 			<p><input type="submit" id="createInvoice_btn" value="Create invoice"></p>

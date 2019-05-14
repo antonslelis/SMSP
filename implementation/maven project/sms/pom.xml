@@ -104,6 +104,5 @@
   <modules>
     <module>model</module>
     <module>web</module>
-    <module>rest-client</module>
   </modules>
 </project>

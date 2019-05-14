@@ -23,7 +23,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="sms-model" />
-    <orderEntry type="library" name="Maven: org.json:json:20150729" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.solent.group.project:sms-dao-jaxb:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.solent.group.project:sms-service:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-server:2.17" level="project" />

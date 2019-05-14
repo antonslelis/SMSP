@@ -1,7 +1,7 @@
 package org.solent.group.project.model;
 public class Pupil extends User {
 
-    private ActivityList personalActivities;
+    private ActivityList personalActivities=new ActivityList();
 
     private String first_name;
 
@@ -12,16 +12,18 @@ public class Pupil extends User {
     private int parentId;
 
     public Activity createActivity(Activity newAct) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        personalActivities.insertActivity(newAct); 
+        
+        return personalActivities.getActivitybyId(newAct.getActId()); 
     }
 
-    public Activity modifyActivity(Activity updAct) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Activity modifyActivity(int id, String newComment, boolean isPaid) {
+        Activity updAct = personalActivities.updateActivity(id, newComment, isPaid); 
+        
+        return updAct; 
     }
 
-    public int deleteActivity(int actId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public ActivityList getPersonalActivities() {
         return personalActivities;
