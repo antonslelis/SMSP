@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JFXML_SchoolManagmentSystem_payment.jnlp">
+  <information>
+    <title>JFXML_SchoolManagmentSystem_payment</title>
+    <vendor>user</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JFXML_SchoolManagmentSystem_payment.jar" size="4012" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="JFXML_SchoolManagmentSystem_payment" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="jfxml_schoolmanagmentsystem_payment.JFXML_SchoolManagmentSystem_payment"  name="JFXML_SchoolManagmentSystem_payment" />
+  <update check="always"/>
+</jnlp>
